@@ -1,0 +1,10 @@
+# cal-com-automation
+
+**Name**: cal-com-automation
+**Source**: community
+
+Automate Cal.com tasks via Rube MCP (Composio): manage bookings, check availability, configure webhooks, and handle teams. Always search tools first for current schemas.
+
+## Connections
+- [[Category- productivity]]
+- [[Risk Level- critical]]

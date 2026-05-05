@@ -1,0 +1,10 @@
+# clarvia-aeo-check
+
+**Name**: clarvia-aeo-check
+**Source**: community
+
+Score any MCP server, API, or CLI for agent-readiness using Clarvia AEO (Agent Experience Optimization). Search 15,400+ indexed tools before adding them to your workflow.
+
+## Connections
+- [[Category- tool-quality]]
+- [[Risk Level- safe]]

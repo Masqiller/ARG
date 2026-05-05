@@ -1,0 +1,10 @@
+# graphql-architect
+
+**Name**: graphql-architect
+**Source**: community
+
+Master modern GraphQL with federation, performance optimization, and enterprise security. Build scalable schemas, implement advanced caching, and design real-time systems.
+
+## Connections
+- [[Category- architecture]]
+- [[Risk Level- unknown]]

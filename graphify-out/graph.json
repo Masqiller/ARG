@@ -1,0 +1,15 @@
+{
+  "nodes": [
+    { "id": "src/mcp-server.ts", "community": "mcp" },
+    { "id": "src/skill-mapper.ts", "community": "mcp" },
+    { "id": "src/hooks.ts", "community": "hooks" },
+    { "id": "package.json", "community": "config" },
+    { "id": "tsconfig.json", "community": "config" },
+    { "id": "workflows/fused-orchestration.md", "community": "docs" },
+    { "id": "README.md", "community": "docs" }
+  ],
+  "links": [
+    { "source": "src/mcp-server.ts", "target": "src/skill-mapper.ts" },
+    { "source": "src/hooks.ts", "target": "src/mcp-server.ts" }
+  ]
+}

@@ -1,0 +1,30 @@
+# Risk Level: offensive
+
+Skills with risk level: offensive
+
+## Connections
+- [[active-directory-attacks]]
+- [[ai-engineering-toolkit]]
+- [[anti-reversing-techniques]]
+- [[api-fuzzing-bug-bounty]]
+- [[attack-tree-construction]]
+- [[aws-penetration-testing]]
+- [[burp-suite-testing]]
+- [[cloud-penetration-testing]]
+- [[ethical-hacking-methodology]]
+- [[file-path-traversal]]
+- [[html-injection-testing]]
+- [[idor-testing]]
+- [[linux-privilege-escalation]]
+- [[metasploit-framework]]
+- [[pentest-checklist]]
+- [[pentest-commands]]
+- [[red-team-tactics]]
+- [[red-team-tools]]
+- [[reverse-engineer]]
+- [[smtp-penetration-testing]]
+- [[sql-injection-testing]]
+- [[ssh-penetration-testing]]
+- [[windows-privilege-escalation]]
+- [[wordpress-penetration-testing]]
+- [[xss-html-injection]]

@@ -1,0 +1,10 @@
+# data-engineer
+
+**Name**: data-engineer
+**Source**: community
+
+Build scalable data pipelines, modern data warehouses, and real-time streaming architectures. Implements Apache Spark, dbt, Airflow, and cloud-native data platforms.
+
+## Connections
+- [[Category- data]]
+- [[Risk Level- unknown]]

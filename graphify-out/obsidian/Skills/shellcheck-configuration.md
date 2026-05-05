@@ -1,0 +1,10 @@
+# shellcheck-configuration
+
+**Name**: shellcheck-configuration
+**Source**: community
+
+Master ShellCheck static analysis configuration and usage for shell script quality. Use when setting up linting infrastructure, fixing code issues, or ensuring script portability.
+
+## Connections
+- [[Category- code-quality]]
+- [[Risk Level- unknown]]

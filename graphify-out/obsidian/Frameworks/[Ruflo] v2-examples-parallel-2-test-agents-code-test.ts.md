@@ -1,0 +1,7 @@
+# [Ruflo] v2/examples/parallel-2/test-agents/code-test.ts
+
+Source file from Ruflo framework.
+Path: `v2/examples/parallel-2/test-agents/code-test.ts`
+
+## Connections
+- [[AWWESOME_SKILL_TREE]]

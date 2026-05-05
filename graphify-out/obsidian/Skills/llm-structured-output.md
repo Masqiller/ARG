@@ -1,0 +1,11 @@
+# llm-structured-output
+
+**Name**: llm-structured-output
+**Source**: community
+
+Get reliable JSON, enums, and typed objects from LLMs using response_format, tool_use, and schema-constrained decoding across OpenAI, Anthropic, and Google APIs.
+
+
+## Connections
+- [[Category- ai-ml]]
+- [[Risk Level- safe]]

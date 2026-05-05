@@ -1,0 +1,32 @@
+# Risk Level: none
+
+Skills with risk level: none
+
+## Connections
+- [[2d-games]]
+- [[analytics-product]]
+- [[antigravity-workflows]]
+- [[architecture-patterns]]
+- [[auri-core]]
+- [[avalonia-viewmodels-zafiro]]
+- [[avoid-ai-writing]]
+- [[azure-functions]]
+- [[bullmq-specialist]]
+- [[cc-skill-continuous-learning]]
+- [[cc-skill-strategic-compact]]
+- [[claude-code-expert]]
+- [[dbt-transformation-patterns]]
+- [[email-systems]]
+- [[file-uploads]]
+- [[growth-engine]]
+- [[inngest]]
+- [[matematico-tao]]
+- [[microservices-patterns]]
+- [[monetization]]
+- [[multi-advisor]]
+- [[nextjs-supabase-auth]]
+- [[product-design]]
+- [[product-inventor]]
+- [[prompt-caching]]
+- [[task-intelligence]]
+- [[trpc-fullstack]]

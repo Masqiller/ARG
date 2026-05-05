@@ -1,0 +1,32 @@
+# Category: devops
+
+All skills related to devops
+
+## Connections
+- [[AWWESOME_SKILL_TREE]]
+- [[aegisops-ai]]
+- [[deployment-engineer]]
+- [[deployment-pipeline-design]]
+- [[deployment-procedures]]
+- [[deployment-validation-config-validate]]
+- [[devops-deploy]]
+- [[devops-troubleshooter]]
+- [[docker-expert]]
+- [[gitops-workflow]]
+- [[grafana-dashboards]]
+- [[helm-chart-scaffolding]]
+- [[incident-response-incident-response]]
+- [[incident-response-smart-fix]]
+- [[incident-runbook-templates]]
+- [[k8s-manifest-generator]]
+- [[k8s-security-policies]]
+- [[kubernetes-architect]]
+- [[kubestellar-console]]
+- [[mise-configurator]]
+- [[observability-monitoring-monitor-setup]]
+- [[observability-monitoring-slo-implement]]
+- [[service-mesh-observability]]
+- [[terraform-aws-modules]]
+- [[terraform-module-library]]
+- [[terraform-skill]]
+- [[terraform-specialist]]

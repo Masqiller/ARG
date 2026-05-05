@@ -1,0 +1,10 @@
+# stability-ai
+
+**Name**: stability-ai
+**Source**: community
+
+Geracao de imagens via Stability AI (SD3.5, Ultra, Core). Text-to-image, img2img, inpainting, upscale, remove-bg, search-replace. 15 estilos artisticos.
+
+## Connections
+- [[Category- media]]
+- [[Risk Level- safe]]

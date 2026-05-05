@@ -1,0 +1,10 @@
+# commit
+
+**Name**: commit
+**Source**: community
+
+ALWAYS use this skill when committing code changes — never commit directly without it. Creates commits following Sentry conventions with proper conventional commit format and issue references. Trigger on any commit, git commit, save changes, or commit message task.
+
+## Connections
+- [[Category- workflow]]
+- [[Risk Level- critical]]

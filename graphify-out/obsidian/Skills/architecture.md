@@ -1,0 +1,10 @@
+# architecture
+
+**Name**: architecture
+**Source**: community
+
+Architectural decision-making framework. Requirements analysis, trade-off evaluation, ADR documentation. Use when making architecture decisions or analyzing system design.
+
+## Connections
+- [[Category- architecture]]
+- [[Risk Level- safe]]

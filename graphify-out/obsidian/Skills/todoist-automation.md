@@ -1,0 +1,10 @@
+# todoist-automation
+
+**Name**: todoist-automation
+**Source**: community
+
+Automate Todoist task management, projects, sections, filtering, and bulk operations via Rube MCP (Composio). Always search tools first for current schemas.
+
+## Connections
+- [[Category- project-management]]
+- [[Risk Level- critical]]

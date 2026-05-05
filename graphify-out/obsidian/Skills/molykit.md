@@ -1,0 +1,14 @@
+# molykit
+
+**Name**: molykit
+**Source**: community
+
+CRITICAL: Use for MolyKit AI chat toolkit. Triggers on:
+BotClient, OpenAI, SSE streaming, AI chat, molykit,
+PlatformSend, spawn(), ThreadToken, cross-platform async,
+Chat widget, Messages, PromptInput, Avatar, LLM
+
+
+## Connections
+- [[Category- ai-ml]]
+- [[Risk Level- unknown]]

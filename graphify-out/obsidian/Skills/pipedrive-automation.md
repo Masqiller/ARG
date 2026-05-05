@@ -1,0 +1,10 @@
+# pipedrive-automation
+
+**Name**: pipedrive-automation
+**Source**: community
+
+Automate Pipedrive CRM operations including deals, contacts, organizations, activities, notes, and pipeline management via Rube MCP (Composio). Always search tools first for current schemas.
+
+## Connections
+- [[Category- business]]
+- [[Risk Level- critical]]

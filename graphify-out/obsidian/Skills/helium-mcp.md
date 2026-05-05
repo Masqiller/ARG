@@ -1,0 +1,10 @@
+# helium-mcp
+
+**Name**: helium-mcp
+**Source**: https://heliumtrades.com/mcp-page/
+
+Connect to Helium's MCP server for news research, media bias analysis, balanced perspectives, stock/options data, and semantic meme search across 3.2M+ articles and 5,000+ sources
+
+## Connections
+- [[Category- uncategorized]]
+- [[Risk Level- safe]]

@@ -1,0 +1,10 @@
+# development
+
+**Name**: development
+**Source**: personal
+
+Comprehensive web, mobile, and backend development workflow bundling frontend, backend, full-stack, and mobile development skills for end-to-end application delivery.
+
+## Connections
+- [[Category- workflow-bundle]]
+- [[Risk Level- safe]]

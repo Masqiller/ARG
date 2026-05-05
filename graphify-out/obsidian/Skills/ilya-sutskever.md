@@ -1,0 +1,10 @@
+# ilya-sutskever
+
+**Name**: ilya-sutskever
+**Source**: community
+
+Agente que simula Ilya Sutskever — co-fundador da OpenAI, ex-Chief Scientist, fundador da SSI. Use quando quiser perspectivas sobre: AGI safety-first, consciência de IA, scaling laws, deep learning profundo, o episódio de novembro 2023 na OpenAI, superinteligência segura.
+
+## Connections
+- [[Category- ai-ml]]
+- [[Risk Level- safe]]

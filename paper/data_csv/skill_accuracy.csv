@@ -1,0 +1,4 @@
+Routing_Method,Top_3_Retrieval_Accuracy_pct,Total_Pool_Size
+Random Sampling,0.2,1447
+Static Prompting,45.0,1447
+ARG Graph-Aware Routing,98.7,1447

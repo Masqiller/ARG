@@ -1,0 +1,10 @@
+# electron-development
+
+**Name**: electron-development
+**Source**: community
+
+Master Electron desktop app development with secure IPC, contextIsolation, preload scripts, multi-process architecture, electron-builder packaging, code signing, and auto-update.
+
+## Connections
+- [[Category- development]]
+- [[Risk Level- safe]]

@@ -1,0 +1,10 @@
+# ai-analyzer
+
+**Name**: ai-analyzer
+**Source**: community
+
+AI驱动的综合健康分析系统，整合多维度健康数据、识别异常模式、预测健康风险、提供个性化建议。支持智能问答和AI健康报告生成。
+
+## Connections
+- [[Category- ai-ml]]
+- [[Risk Level- unknown]]

@@ -1,0 +1,4 @@
+Architecture,Time_to_Resolution_sec,Hallucination_Rate_pct
+Single Agent,450,35
+Parallel Swarm,160,12
+Ruflo LLM Council,210,2

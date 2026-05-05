@@ -1,0 +1,10 @@
+# awt-e2e-testing
+
+**Name**: awt-e2e-testing
+**Source**: https://github.com/ksgisang/awt-skill
+
+AI-powered E2E web testing — eyes and hands for AI coding tools. Declarative YAML scenarios, Playwright execution, visual matching (OpenCV + OCR), platform auto-detection (Flutter/React/Vue), learning DB. Install: npx skills add ksgisang/awt-skill --skill awt -g
+
+## Connections
+- [[Category- test-automation]]
+- [[Risk Level- unknown]]

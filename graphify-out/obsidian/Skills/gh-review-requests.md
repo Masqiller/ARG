@@ -1,0 +1,10 @@
+# gh-review-requests
+
+**Name**: gh-review-requests
+**Source**: community
+
+Fetch unread GitHub notifications for open PRs where review is requested from a specified team or opened by a team member. Use when asked to "find PRs I need to review", "show my review requests", "what needs my review", "fetch GitHub review requests", or "check team review queue".
+
+## Connections
+- [[Category- workflow]]
+- [[Risk Level- safe]]

@@ -1,0 +1,10 @@
+# event-sourcing-architect
+
+**Name**: event-sourcing-architect
+**Source**: community
+
+Expert in event sourcing, CQRS, and event-driven architecture patterns. Masters event store design, projection building, saga orchestration, and eventual consistency patterns. Use PROACTIVELY for event-sourced systems, audit trail requirements, or complex domain modeling with temporal queries.
+
+## Connections
+- [[Category- architecture]]
+- [[Risk Level- unknown]]
