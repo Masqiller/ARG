@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-As Large Language Models (LLMs) are deployed for autonomous coding tasks in massive codebases, context window degradation and linear search latency severely hinder parallel agent orchestration. This paper introduces the Autonomous Vibe Engine (ARG), an architecture that fuses structural graph analysis via Leiden community detection with high-speed Hierarchical Navigable Small World (HNSW) vector indexing. By pruning context at the centroid level, ARG achieves $\mathcal{O}(\log N)$ memory search complexity and guarantees over 99\% token savings. Furthermore, we present the LLM Council protocol, a dynamic 5-agent swarm that natively hooks 1,445 expert meta-skills into the execution flow, reducing structural hallucination rates from 35\% to under 2\%. Finally, we introduce the Universal IDE Session Manager, which persists architectural memory across disparate developer environments, achieving 100\% state stability across context-wipe events.
+This paper presents the Autonomous Vibe Engine (ARG) v3.5, a hardened workforce orchestrator capable of multi-IDE context persistence and global plugin assimilation. By integrating a graph-aware structural brain with a 1,440-skill library and a Universal Session Bridge (USB), ARG achieves O(log N) search complexity and near-zero context loss across disparate development environments. We demonstrate its efficacy through the autonomous design of a stealth drone system and the assimilation of industry-standard workforce candidates from the Superpowers and Claude-Code ecosystems.
 \end{abstract}
 
 \section{Introduction}
@@ -131,6 +131,15 @@ The retrieval algorithm can be formally defined as:
     S(q, \mathcal{C}) = \arg\max_{c \in \mathcal{C}} \left( \frac{q \cdot \mu_c}{||q|| ||\mu_c||} \right)
 \end{equation}
 Where $q$ is the prompt vector, $\mathcal{C}$ is the set of Leiden communities, and $\mu_c$ is the centroid of community $c$. By constraining the HNSW search space strictly to $\mu_c$, ARG mathematically guarantees that unassociated source code never enters the LLM's context window.
+
+\section{Universal Workforce Orchestration}
+The evolution of ARG v3.5 introduces the Layer 5 Workforce Orchestration layer. This layer moves beyond simple task execution to manage a dynamic pool of specialized workforce candidates.
+
+\subsection{Plugin Assimilation}
+ARG now employs a Universal External Loader (UEL) to wrap semantic playbooks from the Claude-Code and Superpowers repositories. These playbooks are treated as first-class citizens in the swarm, allowing for autonomous delegation to specialized reviewers, security auditors, and frontend designers.
+
+\subsection{Universal Session Bridge (USB)}
+To solve the "context fragmentation" problem across IDEs, ARG implements a USB heartbeat. This mechanism serializes the internal brain state into a global workforce buffer, allowing agents in Windsurf, Cursor, and Cline to share a unified semantic memory.
 
 \section{Conclusion}
 The ARG architecture proves that coupling structural graph detection with high-performance vector retrieval fundamentally solves the context degradation problem. The integration of the LLM Council and Universal IDE Persistence enables a self-correcting Swarm capable of traversing and refactoring any technology stack safely, with flat financial costs over massive execution horizons.

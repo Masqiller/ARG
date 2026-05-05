@@ -1,0 +1,14 @@
+{
+  "ide": "ARG_Workforce",
+  "timestamp": "2026-05-05T13:43:35.736Z",
+  "state": {
+    "prompt": "Perform a complete Security Audit and Code Review of the Stealth Drone project, focusing on RF silence logic and EKF numerical stability.",
+    "pruned": {
+      "relevantNodes": [],
+      "relevantEdges": [],
+      "tokenSavingsRatio": 100,
+      "communitiesTouched": {},
+      "relevantMemories": []
+    }
+  }
+}

@@ -1,14 +1,32 @@
 import { ARGBrain } from './arg-brain';
 import { recommendSkillsForTask } from './skill-mapper';
+import { UniversalSessionBridge } from './usb-manager';
+import { PluginManager } from './plugins/plugin-manager';
+import { ExternalPluginLoader } from './plugins/external-loader';
+import { FrontendDesignPlugin, CodeReviewPlugin, SecurityReviewPlugin } from './plugins/workforce-plugins';
 import * as path from 'path';
 
 export class VibeRouter {
     private brain: ARGBrain;
     private graphDir: string;
+    private usb: UniversalSessionBridge;
+    private plugins: PluginManager;
+    private externalLoader: ExternalPluginLoader;
 
-    constructor(graphifyOutputDir: string) {
+    constructor(graphifyOutputDir: string, projectRoot: string) {
         this.graphDir = graphifyOutputDir;
         this.brain = new ARGBrain(graphifyOutputDir);
+        this.usb = new UniversalSessionBridge(projectRoot);
+        this.plugins = new PluginManager(this.brain);
+        this.externalLoader = new ExternalPluginLoader();
+
+        // Register Internal Workforce Candidates
+        this.plugins.registerPlugin(new FrontendDesignPlugin());
+        this.plugins.registerPlugin(new CodeReviewPlugin());
+        this.plugins.registerPlugin(new SecurityReviewPlugin());
+
+        // Register Global External Plugins (Claude-Code / Superpowers)
+        this.externalLoader.loadClaudeCodePlugins(this.plugins);
     }
 
     /**
@@ -52,7 +70,19 @@ export class VibeRouter {
 
         console.log(`\n🚀 [EXECUTION] Swarm initialized with ${pruned.tokenSavingsRatio.toFixed(2)}% lighter memory overhead!\n`);
         
-        // 4. Connect Loose Ends: Physical Execution Hooking
+        // 4. USB Heartbeat (Zero-Config Context)
+        this.usb.syncContext("ARG_Workforce", { prompt, pruned });
+
+        // 5. Trigger Workforce Plugins based on Vibe
+        if (prompt.toLowerCase().includes('design') || prompt.toLowerCase().includes('ui')) {
+            this.plugins.runPlugin('frontend-designer', { prompt });
+        }
+        if (prompt.toLowerCase().includes('review') || prompt.toLowerCase().includes('audit')) {
+            this.plugins.runPlugin('code-reviewer', { prompt });
+            this.plugins.runPlugin('security-auditor', { prompt });
+        }
+        
+        // 6. Connect Loose Ends: Physical Execution Hooking
         this.triggerRufloExecution(prompt, swarmMode, councilMode, agentsToLaunch, communities, skills);
     }
 
@@ -86,7 +116,8 @@ export class VibeRouter {
 
 // If executed directly as a test
 if (require.main === module) {
-    const router = new VibeRouter(path.join(__dirname, '../graphify-out'));
+    const projectRoot = path.join(__dirname, '..');
+    const router = new VibeRouter(path.join(__dirname, '../graphify-out'), projectRoot);
     const testPrompt = process.argv[2] || "Refactor the Ruflo graph extraction execution pipeline and ensure memory caching works securely.";
     router.executeVibe(testPrompt);
 }

@@ -8,6 +8,7 @@ import * as path from 'path';
 // ─────────────────────────────────────────────────────────────────────
 
 const SKILLS_DIR = '/home/smit/Downloads/Fusion/antigravity-awesome-skills/skills';
+const SUPERPOWERS_DIR = '/home/smit/Downloads/Fusion/external_plugins/superpowers/skills';
 
 // ── Weighted Skill Heuristics ────────────────────────────────────────
 // Each entry maps a keyword/pattern to skills with a relevance weight.
@@ -301,24 +302,25 @@ export function recommendSkills(graphifyDir: string): ScoredSkill[] {
  * Returns the absolute path to a skill's SKILL.md
  */
 export function getSkillPath(skillName: string): string | null {
-    if (skillName === 'llm-council') {
-        const councilPath = '/home/smit/Downloads/llm-council/SKILL.md';
-        return fs.existsSync(councilPath) ? councilPath : null;
-    }
     const skillMdPath = path.join(SKILLS_DIR, skillName, 'SKILL.md');
-    return fs.existsSync(skillMdPath) ? skillMdPath : null;
+    if (fs.existsSync(skillMdPath)) return skillMdPath;
+    
+    const superpowersPath = path.join(SUPERPOWERS_DIR, skillName, 'SKILL.md');
+    return fs.existsSync(superpowersPath) ? superpowersPath : null;
 }
 
 /**
  * Lists ALL available skills in the library (for agent browsing)
  */
 export function listAllSkills(): string[] {
-    if (!fs.existsSync(SKILLS_DIR)) return [];
-    return fs.readdirSync(SKILLS_DIR)
-        .filter(name => {
-            const skillPath = path.join(SKILLS_DIR, name, 'SKILL.md');
-            return fs.existsSync(skillPath);
-        });
+    const skills = fs.existsSync(SKILLS_DIR) ? fs.readdirSync(SKILLS_DIR) : [];
+    const superpowers = fs.existsSync(SUPERPOWERS_DIR) ? fs.readdirSync(SUPERPOWERS_DIR) : [];
+    
+    return [...skills, ...superpowers].filter(name => {
+        const p1 = path.join(SKILLS_DIR, name, 'SKILL.md');
+        const p2 = path.join(SUPERPOWERS_DIR, name, 'SKILL.md');
+        return fs.existsSync(p1) || fs.existsSync(p2);
+    });
 }
 
 /**
