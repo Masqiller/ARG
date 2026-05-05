@@ -9,8 +9,9 @@ console.log("🤖 DOGFOODING: ARG Vibe Router Launching Benchmark");
 console.log("=====================================================\n");
 
 // Initialize Router
-const graphDir = path.join(__dirname, '../graphify-out');
-const router = new VibeRouter(graphDir);
+const graphDir = path.join(__dirname, '../../graphify-out');
+const projectRoot = path.join(__dirname, '../../');
+const router = new VibeRouter(graphDir, projectRoot);
 
 // 1. Let the router do its autonomous pruning and decision making
 router.executeVibe(BENCHMARK_PROMPT);

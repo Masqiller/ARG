@@ -217,22 +217,36 @@ function extractKeywordsFromLine(line: string, keywords: Set<string>): void {
 function scoreSkills(keywords: string[], nodeCount: number): ScoredSkill[] {
     const skillScores = new Map<string, ScoredSkill>();
     
+    // ── Load Dynamic Adaptive Weights ──
+    let dynamicWeights: Record<string, number> = {};
+    try {
+        const weightsFile = path.resolve(__dirname, '../logs/skill_weights.json');
+        if (fs.existsSync(weightsFile)) {
+            dynamicWeights = JSON.parse(fs.readFileSync(weightsFile, 'utf-8'));
+        }
+    } catch (e) {
+        // Safe fallback
+    }
+
     // ── Score from keyword matches ──
     for (const keyword of keywords) {
         const entries = SKILL_HEURISTICS[keyword];
         if (!entries) continue;
         
         for (const entry of entries) {
+            const multiplier = dynamicWeights[entry.skill] || 1.0;
+            const weightedScore = entry.weight * multiplier;
+
             const existing = skillScores.get(entry.skill);
             if (existing) {
-                existing.score += entry.weight;
+                existing.score += weightedScore;
                 existing.reason += `, ${keyword}`;
             } else {
                 skillScores.set(entry.skill, {
                     skill: entry.skill,
-                    score: entry.weight,
+                    score: weightedScore,
                     category: entry.category,
-                    reason: `matched: ${keyword}`
+                    reason: `matched: ${keyword} (multiplier: ${multiplier.toFixed(2)})`
                 });
             }
         }

@@ -1,0 +1,38 @@
+{
+  "Agent-1": {
+    "status": "running",
+    "domain": 28
+  },
+  "Agent-2": {
+    "status": "running",
+    "domain": 52
+  },
+  "Agent-3": {
+    "status": "running",
+    "domain": 23
+  },
+  "Agent-4": {
+    "status": "running",
+    "domain": 92
+  },
+  "Agent-5": {
+    "status": "running",
+    "domain": 87
+  },
+  "Agent-6": {
+    "status": "running",
+    "domain": 129
+  },
+  "Agent-7": {
+    "status": "running",
+    "domain": "core"
+  },
+  "Agent-8": {
+    "status": "running",
+    "domain": "core"
+  },
+  "Agent-9": {
+    "status": "running",
+    "domain": "core"
+  }
+}

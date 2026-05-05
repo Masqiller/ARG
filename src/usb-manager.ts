@@ -5,12 +5,18 @@ import * as os from 'os';
 export class UniversalSessionBridge {
     private sessionDir: string;
     private globalDir: string;
+    private projectRoot: string;
 
     constructor(projectRoot: string) {
+        this.projectRoot = projectRoot;
         this.sessionDir = path.join(projectRoot, '.arg_session');
         this.globalDir = path.join(os.homedir(), '.arg_workforce');
         
         this.init();
+    }
+
+    public getProjectRoot(): string {
+        return this.projectRoot;
     }
 
     private init() {

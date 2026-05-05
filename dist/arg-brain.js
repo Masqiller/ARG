@@ -45,10 +45,33 @@ class ARGBrain {
     nodeVectors = new Map();
     communityCentroids = new Map();
     communityNodes = new Map();
+    statePath;
     constructor(graphifyOutputDir) {
         this.graphifyOutputDir = graphifyOutputDir;
+        this.statePath = path.join(this.graphifyOutputDir, 'state.json');
         this.loadGraph();
+        this.loadState();
         this.buildHybridIndex();
+    }
+    loadState() {
+        if (fs.existsSync(this.statePath)) {
+            try {
+                const data = JSON.parse(fs.readFileSync(this.statePath, 'utf-8'));
+                this.memoryStore = new Map(Object.entries(data));
+            }
+            catch (e) {
+                console.error("⚠️ Failed to load swarm state.");
+            }
+        }
+    }
+    saveState() {
+        try {
+            const data = Object.fromEntries(this.memoryStore);
+            fs.writeFileSync(this.statePath, JSON.stringify(data, null, 2));
+        }
+        catch (e) {
+            console.error("⚠️ Failed to save swarm state.");
+        }
     }
     loadGraph() {
         const graphPath = path.join(this.graphifyOutputDir, 'graph.json');
@@ -163,8 +186,8 @@ class ARGBrain {
                 }
             }
         }
-        const relevantEdges = this.graph.links.filter((e) => relevantNodes.has(this.graph.nodes.find((n) => n.id === e.source)) &&
-            relevantNodes.has(this.graph.nodes.find((n) => n.id === e.target)));
+        const relevantNodeIds = new Set(Array.from(relevantNodes).map(n => n.id));
+        const relevantEdges = this.graph.links.filter((e) => relevantNodeIds.has(e.source) && relevantNodeIds.has(e.target));
         // Phase 3: Search IDE Session Memories
         const relevantMemories = [];
         for (const mem of ideMemories) {
@@ -196,6 +219,7 @@ class ARGBrain {
      */
     updateState(agentId, state) {
         this.memoryStore.set(agentId, state);
+        this.saveState();
     }
     getState(agentId) {
         return this.memoryStore.get(agentId);

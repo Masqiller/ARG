@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { execSync } from 'child_process';
 
 /**
  * 🛰️ [AUTOGRAPH DAEMON]
@@ -42,7 +41,8 @@ export class AutoGraph {
         try {
             // Simplified execution of graphify
             console.log("   ↳ Updating structural graph...");
-            // execSync(`npx graphify ${this.projectRoot} --out ${this.outputDir}`);
+            const { spawnSync } = require('child_process');
+            spawnSync('npx', ['graphify', this.projectRoot, '--out', this.outputDir]);
             console.log("✅ [AUTOGRAPH] Brain refreshed.");
         } catch (e) {
             console.error("❌ [AUTOGRAPH] Update failed:", e);

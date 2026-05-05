@@ -5,8 +5,9 @@ console.log("=====================================================");
 console.log("🌀 INITIATING ITERATIVE SKILL DISCOVERY LOOP");
 console.log("=====================================================\n");
 
-const graphDir = path.join(__dirname, '../graphify-out');
-const router = new VibeRouter(graphDir);
+const graphDir = path.join(__dirname, '../../graphify-out');
+const projectRoot = path.join(__dirname, '../../');
+const router = new VibeRouter(graphDir, projectRoot);
 
 let iteration = 1;
 let currentScenarioIndex = 0;

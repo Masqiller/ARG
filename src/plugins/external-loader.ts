@@ -72,4 +72,43 @@ export class ExternalPluginLoader {
             });
         }
     }
+
+    /**
+     * Scans the superpowers/skills directory and registers each skill as an ARG Plugin.
+     * Extracts deep metadata from SKILL.md for surgical swarm selection.
+     */
+    public loadSuperpowers(manager: any) {
+        const skillsDir = path.join(this.externalRoot, 'superpowers/skills');
+        if (!fs.existsSync(skillsDir)) return;
+
+        const skillDirs = fs.readdirSync(skillsDir).filter(f => fs.statSync(path.join(skillsDir, f)).isDirectory());
+
+        for (const dirName of skillDirs) {
+            const skillPath = path.join(skillsDir, dirName, 'SKILL.md');
+            if (fs.existsSync(skillPath)) {
+                const content = fs.readFileSync(skillPath, 'utf-8');
+                
+                // Extract name/description from YAML frontmatter or first header
+                const nameMatch = content.match(/name:\s*(.*)/i) || content.match(/^#\s*(.*)/m);
+                const descMatch = content.match(/description:\s*(.*)/i) || content.match(/^#\s.*\n\n(.*)/m);
+                
+                const skillName = nameMatch ? nameMatch[1].trim() : dirName;
+                const skillDesc = descMatch ? descMatch[1].trim() : `Superpower skill: ${dirName}`;
+                
+                manager.registerPlugin({
+                    name: `external:superpowers:${dirName}`,
+                    displayName: skillName,
+                    description: skillDesc,
+                    execute: async (context: any) => {
+                        console.log(`🦸 [SUPERPOWERS] Activating high-leverage skill "${skillName}"...`);
+                        return { 
+                            status: "success", 
+                            action: "superpower_delegation",
+                            playbook: content.substring(0, 1000) // Increased playbook depth
+                        };
+                    }
+                });
+            }
+        }
+    }
 }

@@ -1,0 +1,19 @@
+{
+  "python-pro": 1.1,
+  "vibe-code-auditor": 1.4,
+  "api-patterns": 5,
+  "nextjs-best-practices": 5,
+  "golang-pro": 5,
+  "react-best-practices": 5,
+  "javascript-pro": 5,
+  "sveltekit": 1.1,
+  "graphql-architect": 1,
+  "event-sourcing-architect": 5,
+  "react-component-performance": 1,
+  "snowflake-development": 1.1,
+  "postgres-best-practices": 1.15,
+  "typescript-pro": 5,
+  "nextjs-app-router-patterns": 5,
+  "context-management-context-save": 1.6,
+  "systematic-debugging": 1
+}

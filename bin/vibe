@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# 🌊 [UNIVERSAL VIBE HUB] v1.0
+# The single point of entry for autonomous vibe coding.
+
+PROJECT_ROOT="/home/smit/Downloads/Fusion/awwesome-ruflo-graphify"
+EXEC_SCRIPT="$PROJECT_ROOT/scripts/test-adapt.ts"
+
+if [ -z "$1" ]; then
+    echo "Usage: vibe \"your task prompt\""
+    exit 1
+fi
+
+PROMPT="$1"
+
+echo "🚀 [VIBE HUB] Dispatching workforce for: \"$PROMPT\""
+echo "--------------------------------------------------------"
+
+# Trigger the ARG Engine
+npx ts-node "$EXEC_SCRIPT" "$PROMPT"
+
+echo "--------------------------------------------------------"
+echo "✅ [VIBE HUB] Task processing complete. Adaptive weights synchronized."

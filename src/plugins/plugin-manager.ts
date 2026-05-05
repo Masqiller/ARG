@@ -30,4 +30,8 @@ export class PluginManager {
             description: p.description
         }));
     }
+
+    public getAllPlugins(): any[] {
+        return Array.from(this.plugins.values());
+    }
 }

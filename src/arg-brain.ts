@@ -18,9 +18,33 @@ export class ARGBrain {
     private communityCentroids: Map<string, Map<string, number>> = new Map();
     private communityNodes: Map<string, any[]> = new Map();
 
+    private statePath: string;
+
     constructor(private graphifyOutputDir: string) {
+        this.statePath = path.join(this.graphifyOutputDir, 'state.json');
         this.loadGraph();
+        this.loadState();
         this.buildHybridIndex();
+    }
+
+    private loadState() {
+        if (fs.existsSync(this.statePath)) {
+            try {
+                const data = JSON.parse(fs.readFileSync(this.statePath, 'utf-8'));
+                this.memoryStore = new Map(Object.entries(data));
+            } catch (e) {
+                console.error("⚠️ Failed to load swarm state.");
+            }
+        }
+    }
+
+    private saveState() {
+        try {
+            const data = Object.fromEntries(this.memoryStore);
+            fs.writeFileSync(this.statePath, JSON.stringify(data, null, 2));
+        } catch (e) {
+            console.error("⚠️ Failed to save swarm state.");
+        }
     }
 
     private loadGraph() {
@@ -34,7 +58,7 @@ export class ARGBrain {
     }
 
     private tokenize(text: string): string[] {
-        return (text || '').toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2);
+        return (text || '').toLowerCase().replace(/[_\.\/]/g, ' ').replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2);
     }
 
     private buildHybridIndex() {
@@ -123,7 +147,7 @@ export class ARGBrain {
         const winningCommunities = new Set<string>();
         for (const [comm, centroid] of this.communityCentroids.entries()) {
             const score = this.calculateCosineSimilarity(promptVector, centroid);
-            if (score > 0.02) { // Loose threshold for community inclusion
+            if (score > 0.01) { // Loose threshold for community inclusion
                 winningCommunities.add(comm);
             }
         }
@@ -137,16 +161,16 @@ export class ARGBrain {
             for (const node of nodesInComm) {
                 const nodeVec = this.nodeVectors.get(node.id)!;
                 const score = this.calculateCosineSimilarity(promptVector, nodeVec);
-                if (score > 0.05) { // Strict threshold for exact nodes
+                if (score > 0.02) { // Strict threshold for exact nodes
                     relevantNodes.add(node);
                     communitiesTouched.add(comm);
                 }
             }
         }
 
+        const relevantNodeIds = new Set(Array.from(relevantNodes).map(n => n.id));
         const relevantEdges = this.graph.links.filter((e: any) => 
-            relevantNodes.has(this.graph.nodes.find((n: any) => n.id === e.source)) &&
-            relevantNodes.has(this.graph.nodes.find((n: any) => n.id === e.target))
+            relevantNodeIds.has(e.source) && relevantNodeIds.has(e.target)
         );
 
         // Phase 3: Search IDE Session Memories
@@ -183,6 +207,7 @@ export class ARGBrain {
      */
     public updateState(agentId: string, state: any) {
         this.memoryStore.set(agentId, state);
+        this.saveState();
     }
 
     public getState(agentId: string) {
