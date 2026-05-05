@@ -138,6 +138,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d24c64cfcb87b753",
-  "lastOpenFiles": []
+  "active": "49c920c320a1a3a3",
+  "lastOpenFiles": [
+    "graph.canvas",
+    "README.md",
+    "workflowsfused-orchestration.md",
+    "tsconfig.json.md",
+    "package.json.md",
+    "srchooks.ts.md",
+    "srcskill-mapper.ts.md",
+    "srcmcp-server.ts.md"
+  ]
 }

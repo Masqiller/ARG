@@ -3,8 +3,8 @@ import * as path from 'path';
 import { ARGPlugin } from './plugin-manager';
 
 /**
- * 🌍 [UNIVERSAL EXTERNAL LOADER] v2.0
- * Deep integration for Claude-Code and Superpowers workforce.
+ * 🌍 [UNIVERSAL EXTERNAL LOADER] v2.5
+ * Deep integration for Claude-Code, Superpowers, and Caveman workforce.
  */
 export class ExternalPluginLoader {
     private externalRoot = '/home/smit/Downloads/Fusion/external_plugins';
@@ -13,7 +13,6 @@ export class ExternalPluginLoader {
 
     /**
      * Scans the claude-code/plugins directory and registers each command as an ARG Plugin.
-     * Universalizes the .md playbooks into executable swarm prompts.
      */
     public loadClaudeCodePlugins(manager: any) {
         const pluginsDir = path.join(this.externalRoot, 'claude-code/plugins');
@@ -34,18 +33,43 @@ export class ExternalPluginLoader {
                         description: `Global workforce plugin: ${dirName}`,
                         execute: async (context: any) => {
                             console.log(`🌍 [GLOBAL WORKFORCE] Activating "${pluginName}" playbook from ${dirName}...`);
-                            
-                            // High-Intelligence Routing:
-                            // We pass the playbook content directly to the swarm orchestration layer.
                             return { 
                                 status: "success", 
                                 action: "swarm_delegation",
-                                playbook: playbookContent.substring(0, 500) + "..." // For logging
+                                playbook: playbookContent.substring(0, 500) + "..."
                             };
                         }
                     });
                 }
             }
+        }
+    }
+
+    /**
+     * Scans the caveman/agents directory and registers each agent as an ARG Plugin.
+     */
+    public loadCavemanAgents(manager: any) {
+        const agentsDir = path.join(this.externalRoot, 'caveman/agents');
+        if (!fs.existsSync(agentsDir)) return;
+
+        const agentFiles = fs.readdirSync(agentsDir).filter(f => f.endsWith('.md'));
+
+        for (const agentFile of agentFiles) {
+            const agentName = agentFile.replace('.md', '');
+            const playbookContent = fs.readFileSync(path.join(agentsDir, agentFile), 'utf-8');
+            
+            manager.registerPlugin({
+                name: `external:caveman:${agentName}`,
+                description: `High-efficiency caveman agent: ${agentName}`,
+                execute: async (context: any) => {
+                    console.log(`🪨 [CAVEMAN WORKFORCE] Activating high-efficiency agent "${agentName}"...`);
+                    return { 
+                        status: "success", 
+                        action: "caveman_swarm_delegation",
+                        playbook: playbookContent.substring(0, 500) + "..."
+                    };
+                }
+            });
         }
     }
 }

@@ -25,8 +25,9 @@ export class VibeRouter {
         this.plugins.registerPlugin(new CodeReviewPlugin());
         this.plugins.registerPlugin(new SecurityReviewPlugin());
 
-        // Register Global External Plugins (Claude-Code / Superpowers)
+        // Register Global External Plugins (Claude-Code / Superpowers / Caveman)
         this.externalLoader.loadClaudeCodePlugins(this.plugins);
+        this.externalLoader.loadCavemanAgents(this.plugins);
     }
 
     /**

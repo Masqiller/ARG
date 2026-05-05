@@ -9,6 +9,7 @@ import * as path from 'path';
 
 const SKILLS_DIR = '/home/smit/Downloads/Fusion/antigravity-awesome-skills/skills';
 const SUPERPOWERS_DIR = '/home/smit/Downloads/Fusion/external_plugins/superpowers/skills';
+const CAVEMAN_DIR = '/home/smit/Downloads/Fusion/external_plugins/caveman/skills';
 
 // ── Weighted Skill Heuristics ────────────────────────────────────────
 // Each entry maps a keyword/pattern to skills with a relevance weight.
@@ -306,7 +307,10 @@ export function getSkillPath(skillName: string): string | null {
     if (fs.existsSync(skillMdPath)) return skillMdPath;
     
     const superpowersPath = path.join(SUPERPOWERS_DIR, skillName, 'SKILL.md');
-    return fs.existsSync(superpowersPath) ? superpowersPath : null;
+    if (fs.existsSync(superpowersPath)) return superpowersPath;
+
+    const cavemanPath = path.join(CAVEMAN_DIR, skillName, 'SKILL.md');
+    return fs.existsSync(cavemanPath) ? cavemanPath : null;
 }
 
 /**
@@ -315,11 +319,13 @@ export function getSkillPath(skillName: string): string | null {
 export function listAllSkills(): string[] {
     const skills = fs.existsSync(SKILLS_DIR) ? fs.readdirSync(SKILLS_DIR) : [];
     const superpowers = fs.existsSync(SUPERPOWERS_DIR) ? fs.readdirSync(SUPERPOWERS_DIR) : [];
+    const caveman = fs.existsSync(CAVEMAN_DIR) ? fs.readdirSync(CAVEMAN_DIR) : [];
     
-    return [...skills, ...superpowers].filter(name => {
+    return [...skills, ...superpowers, ...caveman].filter(name => {
         const p1 = path.join(SKILLS_DIR, name, 'SKILL.md');
         const p2 = path.join(SUPERPOWERS_DIR, name, 'SKILL.md');
-        return fs.existsSync(p1) || fs.existsSync(p2);
+        const p3 = path.join(CAVEMAN_DIR, name, 'SKILL.md');
+        return fs.existsSync(p1) || fs.existsSync(p2) || fs.existsSync(p3);
     });
 }
 
