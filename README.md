@@ -46,19 +46,14 @@ For high-stakes decisions (like drone navigation or security audits), ARG trigge
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start (Zero-Config)
 
-### Installation
+Get the workforce running in 3 commands:
+
 ```bash
 git clone https://github.com/Masqiller/ARG.git
-cd ARG
-npm install
-```
-
-### Usage
-Run the **VibeRouter** from any IDE to launch the swarm:
-```bash
-npx ts-node src/vibe-router.ts "Implement a 3D path planner for a stealth drone"
+npm run setup
+npm run vibe -- "Your autonomous task here"
 ```
 
 ---

@@ -11,8 +11,12 @@
             "id": "d24c64cfcb87b753",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Core/AWWESOME_SKILL_TREE.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Core/AWWESOME_SKILL_TREE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Core/AWWESOME_SKILL_TREE.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Core/AWWESOME_SKILL_TREE.md"
+              }
             }
           }
         ]
@@ -138,8 +146,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "49c920c320a1a3a3",
+  "active": "d24c64cfcb87b753",
   "lastOpenFiles": [
+    "Categories/Category- andruia.md",
+    "Core/AWWESOME_SKILL_TREE.md",
+    "Frameworks/[Ruflo] plugin-agents-flow-nexus-swarm.md.md",
     "graph.canvas",
     "README.md",
     "workflowsfused-orchestration.md",

@@ -5,6 +5,9 @@
   "main": "src/mcp-server.ts",
   "scripts": {
     "build": "tsc",
+    "setup": "chmod +x init.sh && ./init.sh",
+    "vibe": "node dist/vibe-router.js",
+    "graph": "graphify build .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
