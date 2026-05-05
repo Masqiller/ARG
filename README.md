@@ -52,9 +52,11 @@ ARG is built to **save you money**. By using the Brain to prune context before s
 ---
 
 ## 🤝 Supporter Credits
-A special thanks to the **Vibe Architects** and the global community for supporting the evolution of autonomous AI:
+A special thanks to the foundational open-source repositories and communities that make the ARG Swarm possible:
+- **[Ruflo](https://github.com/ruvnet/ruflo)** & **[Graphify](https://github.com/safishamsi/graphify)** — The underlying execution engine and topographical visualization layer.
+- **[Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills)** — The massive repository of 1,440+ expert playbooks powering the workforce.
+- **[Claude-Mem](https://github.com/thedotmack/claude-mem)** — The persistent long-term semantic memory bridge.
 - **The Google Deepmind Team** (Advanced Agentic Coding)
-- **The Vibe Architect Community**
 - **Smit** (The Visionary)
 - **All contributors to Claude-Code, Superpowers, and Caveman.**
 
