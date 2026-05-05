@@ -1,0 +1,54 @@
+---
+source_file: "vendor/claude-mem/plugin/ui/viewer-bundle.js"
+type: "code"
+community: "Community None"
+degree: 9
+location: "L8"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Community_None
+---
+
+# lp()
+
+> [!info] Properties
+> **File Type**: code
+> **Community**: [[_COMMUNITY_Community None|Community None]]
+> **Degree**: 9
+
+## Architecture Graph
+```mermaid
+graph LR
+    center["lp[]"]:::centerNode
+    center -->|"contains"| N_vendor_claude_mem_plugin_ui_viewer_bundle_js["viewer-bundle.js"]
+    center -->|"calls"| N_ui_viewer_bundle_e["E[]"]
+    center -->|"calls"| N_ui_viewer_bundle_qe["qe[]"]
+    center -->|"calls"| N_ui_viewer_bundle_ct["Ct[]"]
+    center -->|"calls"| N_ui_viewer_bundle_fo["fo[]"]
+    center -->|"calls"| N_ui_viewer_bundle_au["Au[]"]
+    center -->|"calls"| N_ui_viewer_bundle_zm["zm[]"]
+    center -->|"calls"| N_ui_viewer_bundle_up["up[]"]
+    center -->|"calls"| N_ui_viewer_bundle_sl["sl[]"]
+    classDef centerNode fill:#4E79A7,stroke:#fff,stroke-width:2px,color:#fff
+```
+
+## Outbound Connections
+- [[Au()]] - `calls` [EXTRACTED]
+- [[Ct()]] - `calls` [EXTRACTED]
+- [[E()]] - `calls` [EXTRACTED]
+- [[fo()]] - `calls` [EXTRACTED]
+- [[qe()]] - `calls` [EXTRACTED]
+- [[sl()]] - `calls` [EXTRACTED]
+- [[up()]] - `calls` [EXTRACTED]
+- [[viewer-bundle.js]] - `contains` [EXTRACTED]
+- [[zm()]] - `calls` [EXTRACTED]
+
+## Inbound Dependencies
+> [!abstract]- Files that link here
+```dataview
+LIST
+FROM [[lp()]]
+```
+
+#graphify/code #graphify/EXTRACTED #community/Community_None

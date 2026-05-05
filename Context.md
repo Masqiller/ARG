@@ -4,9 +4,23 @@
 
 This document captures the testing validation and cognitive journey of the **Autonomous Vibe Engine (ARG) v3.6**. It serves as the situational awareness layer for all connected agents.
 
+## 🛠️ Multi-IDE Integration Layer
+We have established a **Global Behavioral Mandate** across all major AI coding environments. Every AI assistant opened in this workspace is strictly instructed to act as a frontend for the ARG Orchestrator.
+
+The following integration files are active:
+- **Cursor**: `.cursorrules`
+- **Windsurf**: `.windsurfrules`
+- **Cline/Roo Code**: `.clinerules`
+- **GitHub Copilot**: `.github/copilot-instructions.md`
+- **Claude Code**: `CLAUDE.md`
+- **Antigravity**: `ANTIGRAVITY.md`
+- **Aider**: `AIDER.md`
+- **PearAI**: `.pearairules`
+- **Generic Agents**: `AI.md`, `AGENT.md`, `CONVENTIONS.md`
+
 ## 🧪 Testing & Validation Highlights
 
-### 1. The Stealth Drone Swarm (GPS-Denied)
+### 1. The Drone Swarm (GPS-Denied)
 - **Objective**: Design a stealth-optimized quadrotor for autonomous flight in signal-jammed environments.
 - **Agent Cognition**: The swarm moved from hardware selection (NVIDIA Jetson/Pixhawk) to tactical planning (EKF fusion of VIO and LiDAR).
 - **Result**: Proved that ARG can orchestrate complex, multi-domain engineering tasks (Hardware + ROS2 + Control Theory) with minimal user input.

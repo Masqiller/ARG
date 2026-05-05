@@ -73,6 +73,30 @@ By using the Hybrid Brain to prune context before sending tasks to LLMs, we typi
 
 ---
 
+## 🧠 Semantic Obsidian Brains (The Living Vault)
+
+ARG utilizes the **Graphify** engine to transform your flat, opaque codebase into a **Semantic Knowledge Base** readable by humans and AI alike via [Obsidian](https://obsidian.md/).
+
+Instead of just exporting a list of files, ARG generates a **fully functional digital brain** where every code node is enriched with topological intelligence.
+
+### 🌟 Key Features of the ARG-Obsidian Export:
+*   **Mermaid Local Architecture Graphs**: Every note includes a visual diagram of its immediate neighborhood, color-coded by file type (Code, Paper, Document, Image).
+*   **Topological Property Callouts**: Instant visibility into a node's "importance" via its degree, community membership, and source location.
+*   **Inbound/Outbound Dataview Queries**: Utilizing the Dataview plugin, nodes automatically list their incoming dependencies and outbound metadata, creating a dynamic exploration experience.
+*   **Community Hubs**: Automatically grouped "neighborhoods" of code (e.g., all `security` files or `frontend` components) are mapped into central hub notes for macro-level navigation.
+
+### 🎯 Use Cases:
+1.  **Instant Repository Onboarding**: Open a new 100k+ line project as a vault and immediately "see" the clusters of logic and how they connect.
+2.  **Impact Analysis**: Before changing a core utility, open its Obsidian node to see every file that depends on it via the dynamic backlink query.
+3.  **Architecture Auditing**: Identify "God Nodes" (dangerously high-degree files) and "Island Communities" (isolated code) through visual graph analysis.
+4.  **AI Documentation Bridge**: Use the vault as a persistent context layer for other AI agents to browse the codebase's semantic structure without reading every line of code.
+
+> [!TIP]
+> **To generate your vault:** 
+> Run `./bin/vibe run "Export my project to an Obsidian brain"` or use the direct command: `python -m graphify export obsidian --graph <path_to_graph.json> --dir <vault_output_dir>`
+
+---
+
 ## 🤝 Supporter Credits
 
 A special thanks to the foundational open-source repositories and communities that make the ARG Swarm possible:

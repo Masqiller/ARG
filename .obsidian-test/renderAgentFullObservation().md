@@ -1,0 +1,42 @@
+---
+source_file: "vendor/claude-mem/src/services/context/formatters/AgentFormatter.ts"
+type: "code"
+community: "Community None"
+degree: 3
+location: "L102"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Community_None
+---
+
+# renderAgentFullObservation()
+
+> [!info] Properties
+> **File Type**: code
+> **Community**: [[_COMMUNITY_Community None|Community None]]
+> **Degree**: 3
+
+## Architecture Graph
+```mermaid
+graph LR
+    center["renderAgentFullObservation[]"]:::centerNode
+    center -->|"imports"| N_vendor_claude_mem_tests_context_formatters_agent_formatter_test_ts["agent-formatter.test.ts"]
+    center -->|"contains"| N_vendor_claude_mem_src_services_context_formatters_agentformatter_ts["AgentFormatter.ts"]
+    center -->|"calls"| N_formatters_agentformatter_compacttime["compactTime[]"]
+    classDef centerNode fill:#4E79A7,stroke:#fff,stroke-width:2px,color:#fff
+```
+
+## Outbound Connections
+- [[AgentFormatter.ts]] - `contains` [EXTRACTED]
+- [[agent-formatter.test.ts]] - `imports` [EXTRACTED]
+- [[compactTime()_1]] - `calls` [EXTRACTED]
+
+## Inbound Dependencies
+> [!abstract]- Files that link here
+```dataview
+LIST
+FROM [[renderAgentFullObservation()]]
+```
+
+#graphify/code #graphify/EXTRACTED #community/Community_None

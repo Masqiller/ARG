@@ -1,0 +1,40 @@
+---
+source_file: "scripts/evaluate_efficiency.ts"
+type: "code"
+community: "Community None"
+degree: 2
+location: "L55"
+tags:
+  - graphify/code
+  - graphify/EXTRACTED
+  - community/Community_None
+---
+
+# simulateScenarioB()
+
+> [!info] Properties
+> **File Type**: code
+> **Community**: [[_COMMUNITY_Community None|Community None]]
+> **Degree**: 2
+
+## Architecture Graph
+```mermaid
+graph LR
+    center["simulateScenarioB[]"]:::centerNode
+    center -->|"contains"| N_scripts_evaluate_efficiency_ts["evaluate_efficiency.ts"]
+    center -->|"calls"| N_scripts_evaluate_efficiency_generatereport["generateReport[]"]
+    classDef centerNode fill:#4E79A7,stroke:#fff,stroke-width:2px,color:#fff
+```
+
+## Outbound Connections
+- [[evaluate_efficiency.ts]] - `contains` [EXTRACTED]
+- [[generateReport()_1]] - `calls` [EXTRACTED]
+
+## Inbound Dependencies
+> [!abstract]- Files that link here
+```dataview
+LIST
+FROM [[simulateScenarioB()]]
+```
+
+#graphify/code #graphify/EXTRACTED #community/Community_None
