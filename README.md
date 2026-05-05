@@ -46,15 +46,44 @@ For high-stakes decisions (like drone navigation or security audits), ARG trigge
 
 ---
 
-## 🚀 Quick Start (Zero-Config)
+## 🚀 Getting Started
 
-Get the workforce running in 3 commands:
+### ⚡ Instant Setup (Zero-Config)
+
+Get the workforce running in seconds:
 
 ```bash
 git clone https://github.com/Masqiller/ARG.git
 npm run setup
 npm run vibe -- "Your autonomous task here"
 ```
+
+### 🛠️ Long Setup (Manual)
+
+For developers who want granular control over the environment:
+
+1. **Clone & Install Node Dependencies**:
+   ```bash
+   git clone https://github.com/Masqiller/ARG.git
+   cd ARG
+   npm install
+   ```
+
+2. **Setup Graphify Core**:
+   ```bash
+   mkdir -p vendor
+   git clone https://github.com/safishamsi/graphify vendor/graphify
+   pip3 install -e vendor/graphify/
+   ```
+
+3. **Link Expert Plugins**:
+   Ensure your expert playbooks (Superpowers, Claude-Code) are located in `vendor/external_plugins/`.
+
+4. **Build & Index**:
+   ```bash
+   npm run build
+   graphify build .
+   ```
 
 ---
 
