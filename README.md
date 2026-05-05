@@ -97,6 +97,33 @@ Instead of just exporting a list of files, ARG generates a **fully functional di
 
 ---
 
+## 🔌 Universal Plugin Integration (Adding Skills)
+
+ARG is built to be **infinitely extensible**. You can integrate new skills or entire external plugin repositories (like `superpowers` or `caveman`) with minimal configuration.
+
+### 1. Adding a Single New Skill
+To add a new capability to the workforce:
+1.  **Navigate to the skills library**: `antigravity-awesome-skills/skills/`.
+2.  **Create a new directory**: e.g., `my-awesome-plugin/`.
+3.  **Create a `SKILL.md`**: This is the "brain" of the skill. It must contain:
+    - **Name & Description**: Frontmatter for the orchestrator to read.
+    - **Instructions**: Precise behavioral guidelines for the agent.
+4.  **Update the Heuristics (Optional)**: In `src/skill-mapper.ts`, add your plugin's keywords to `SKILL_HEURISTICS`. This allows ARG to **automatically** assign your skill whenever those keywords appear in a task or codebase.
+
+### 2. Integrating an External Plugin Repository
+If you have a collection of plugins from another project:
+1.  **Clone the repository** into the `external_plugins/` directory.
+2.  **Register the path**: Open `src/skill-mapper.ts` and add the new directory to the skill search paths:
+    ```typescript
+    const MY_NEW_PLUGIN_DIR = '/path/to/your/repo/skills';
+    ```
+3.  **Update the Loader**: Ensure `listAllSkills` and `getSkillPath` in `skill-mapper.ts` include your new directory.
+
+### 3. Verification
+Once added, run `./bin/vibe discover`. Your new skill should appear in the **Active Workforce Discovery** list!
+
+---
+
 ## 🤝 Supporter Credits
 
 A special thanks to the foundational open-source repositories and communities that make the ARG Swarm possible:
