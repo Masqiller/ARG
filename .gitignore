@@ -36,5 +36,7 @@ Thumbs.db
 .env
 .env.local
 
-# ARG Sessions (user-specific)
+# ARG Sessions and Logs
 .arg_sessions/
+logs/
+graphify-out/

@@ -55,6 +55,7 @@ export class VibeRouter {
         this.externalLoader.loadClaudeCodePlugins(this.plugins);
         this.externalLoader.loadCavemanAgents(this.plugins);
         this.externalLoader.loadSuperpowers(this.plugins);
+        this.externalLoader.loadCustomPlugins(this.plugins);
     }
 
     /**
@@ -133,9 +134,10 @@ export class VibeRouter {
                 console.log(`   ↳ High-complexity task detected. Launching ${agentsToLaunch}-agent parallel swarm.`);
             }
 
-            if (prompt.toLowerCase().includes('audit') || prompt.toLowerCase().includes('security') || prompt.toLowerCase().includes('harden') || prompt.toLowerCase().includes('council')) {
+            if (prompt.toLowerCase().includes('audit') || prompt.toLowerCase().includes('security') || prompt.toLowerCase().includes('harden') || prompt.toLowerCase().includes('council') || prompt.toLowerCase().includes('design') || prompt.toLowerCase().includes('frontend') || prompt.toLowerCase().includes('ui')) {
                 councilMode = true;
                 agentsToLaunch = 5;
+                console.log(`   ↳ High-fidelity Design/Security task detected. Escalating to 5-agent Council Swarm.`);
             }
         } else {
             console.log(`   ↳ 🧬 EVOLUTION OVERRIDES ACTIVE: Testing Configuration`);

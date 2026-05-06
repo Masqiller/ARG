@@ -97,6 +97,18 @@ const SKILL_HEURISTICS: Record<string, SkillWeight[]> = {
     'council':     [{ skill: 'llm-council', weight: 10, category: 'architecture' }],
     'debate':      [{ skill: 'llm-council', weight: 9, category: 'architecture' }],
     'review':      [{ skill: 'llm-council', weight: 8, category: 'architecture' }],
+    
+    // ── Elite Frontend & Design (Universal Assimilation) ──
+    'design':      [{ skill: 'impeccable', weight: 10, category: 'quality' }, { skill: 'ui-ux-pro-max', weight: 9, category: 'quality' }, { skill: 'taste-skill', weight: 8, category: 'quality' }],
+    'ui':          [{ skill: 'ui-ux-pro-max', weight: 10, category: 'framework' }, { skill: 'impeccable', weight: 9, category: 'quality' }],
+    'ux':          [{ skill: 'impeccable', weight: 10, category: 'quality' }, { skill: 'ui-ux-pro-max', weight: 9, category: 'quality' }],
+    'frontend':    [{ skill: 'taste-skill', weight: 9, category: 'framework' }, { skill: 'impeccable', weight: 8, category: 'framework' }],
+    'animation':   [{ skill: 'huashu-design', weight: 10, category: 'quality' }],
+    'motion':      [{ skill: 'huashu-design', weight: 10, category: 'quality' }, { skill: 'taste-skill', weight: 7, category: 'quality' }],
+    'prototype':   [{ skill: 'huashu-design', weight: 10, category: 'quality' }],
+    'polish':      [{ skill: 'impeccable', weight: 10, category: 'quality' }, { skill: 'taste-skill', weight: 9, category: 'quality' }],
+    'pr':          [{ skill: 'playwright-review', weight: 9, category: 'testing' }],
+    'audit':       [{ skill: 'impeccable', weight: 8, category: 'quality' }, { skill: 'security-auditor', weight: 7, category: 'security' }],
 };
 
 // ── Architectural Meta-Skills (always loaded based on graph complexity) ──

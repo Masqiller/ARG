@@ -6,7 +6,7 @@ import { ARGPlugin } from './plugin-manager';
  */
 export class FrontendDesignPlugin implements ARGPlugin {
     name = "frontend-designer";
-    description = "Premium UI/UX architect specializing in modern aesthetics and micro-interactions.";
+    description = "Premium UI/UX architect using the Elite Frontend Workforce (Impeccable, Huashu, Pro Max, Taste). Escalates to Council Swarm for high-fidelity tasks.";
     
     async execute(context: any): Promise<any> {
         console.log("🎨 Designing premium interface components...");

@@ -110,17 +110,42 @@ To add a new capability to the workforce:
     - **Instructions**: Precise behavioral guidelines for the agent.
 4.  **Update the Heuristics (Optional)**: In `src/skill-mapper.ts`, add your plugin's keywords to `SKILL_HEURISTICS`. This allows ARG to **automatically** assign your skill whenever those keywords appear in a task or codebase.
 
-### 2. Integrating an External Plugin Repository
-If you have a collection of plugins from another project:
-1.  **Clone the repository** into the `external_plugins/` directory.
-2.  **Register the path**: Open `src/skill-mapper.ts` and add the new directory to the skill search paths:
-    ```typescript
-    const MY_NEW_PLUGIN_DIR = '/path/to/your/repo/skills';
-    ```
-3.  **Update the Loader**: Ensure `listAllSkills` and `getSkillPath` in `skill-mapper.ts` include your new directory.
+### 2. Standardized External Plugin Path
+ARG is configured to always monitor and load from the global workforce directory:
+`/home/smit/Downloads/Fusion/external_plugins`
+
+- **Automatic Assimilation**: Any repository cloned or skill created within this directory is automatically discovered by the **Vibe Router**.
+- **Ghost Monitoring**: The **Vibe Ghost** watches this directory in real-time. If you add a new plugin, ARG picks up the signal instantly.
 
 ### 3. Verification
 Once added, run `./bin/vibe discover`. Your new skill should appear in the **Active Workforce Discovery** list!
+
+## 🎨 Elite Frontend Workforce
+
+ARG has assimilated five high-performance frontend and design ecosystems into its universal workforce. These are no longer just repositories; they are active playbooks that the swarm can deploy for any UI/UX task.
+
+| Skill | Source | Specialty |
+|---|---|---|
+| **Impeccable** | [impeccable](https://github.com/pbakaus/impeccable) | High-end polish, visual hierarchy, and premium design auditing. |
+| **Huashu Design** | [huashu-design](https://github.com/alchaincyf/huashu-design) | Hi-fi prototyping, cinematic animations, and Apple-style showcases. |
+| **UI/UX Pro Max** | [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Industry-specific reasoning rules and automated design system generation. |
+| **Taste Skill** | [taste-skill](https://github.com/leonxlnx/taste-skill) | "Anti-slop" framework for editorial-grade layouts and spring motion. |
+| **Playwright Review** | [playwright](https://github.com/microsoft/playwright) | Semantic logic validation and concise PR review standards. |
+
+### How to Trigger
+Simply mention frontend-related keywords in your prompt. The **Vibe Router** will automatically equip the appropriate playbooks:
+- `vibe run "Polish the dashboard and add smooth motion"` ➡️ Equips `impeccable` + `huashu-design`
+- `vibe run "Build a landing page for a Fintech SaaS"` ➡️ Equips `ui-ux-pro-max` + `taste-skill`
+- `vibe run "Review this PR for logic errors"` ➡️ Equips `playwright-review`
+
+### 👻 Vibe Ghost (Auto-Audit)
+ARG now supports **Vibe Ghost Mode**, a background watcher that automatically monitors your workspace. 
+- **Auto-Pick Up**: Simply create a new file or save changes, and ARG will automatically trigger an audit or hardening sequence.
+- **Council Trigger**: If you create a UI/Design file, the Ghost automatically escalates the task to the 5-agent Council.
+- **Command**: Run `vibe watch` to start the ghost.
+
+### 🏛️ Council Swarm Escalation
+For high-fidelity tasks involving **Design**, **UI**, or **Frontend**, ARG automatically escalates to a **5-agent Council Swarm**. This ensures that multiple perspectives (The Contrarian, The Visualist, The Motion Lead, etc.) collaborate to achieve maximum aesthetic and functional quality.
 
 ---
 

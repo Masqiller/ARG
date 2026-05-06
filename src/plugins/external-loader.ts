@@ -111,4 +111,53 @@ export class ExternalPluginLoader {
             }
         }
     }
+
+    /**
+     * Scans the base external_plugins directory for any generic skills or playbooks.
+     */
+    public loadCustomPlugins(manager: any) {
+        if (!fs.existsSync(this.externalRoot)) return;
+
+        const items = fs.readdirSync(this.externalRoot);
+        for (const item of items) {
+            const itemPath = path.join(this.externalRoot, item);
+            if (!fs.statSync(itemPath).isDirectory()) continue;
+            
+            // Skip known directories already handled
+            if (['claude-code', 'caveman', 'superpowers'].includes(item)) continue;
+
+            const skillFile = path.join(itemPath, 'SKILL.md');
+            const mdFiles = fs.readdirSync(itemPath).filter(f => f.endsWith('.md'));
+
+            if (fs.existsSync(skillFile)) {
+                this.registerSingleMdPlugin(manager, skillFile, `custom:${item}`, item);
+            } else if (mdFiles.length > 0) {
+                // If no SKILL.md, register the first .md as the playbook
+                this.registerSingleMdPlugin(manager, path.join(itemPath, mdFiles[0]), `custom:${item}`, item);
+            }
+        }
+    }
+
+    private registerSingleMdPlugin(manager: any, filePath: string, prefix: string, dirName: string) {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        const nameMatch = content.match(/name:\s*(.*)/i) || content.match(/^#\s*(.*)/m);
+        const descMatch = content.match(/description:\s*(.*)/i) || content.match(/^#\s.*\n\n(.*)/m);
+        
+        const skillName = nameMatch ? nameMatch[1].trim() : dirName;
+        const skillDesc = descMatch ? descMatch[1].trim() : `Custom workforce plugin: ${dirName}`;
+        
+        manager.registerPlugin({
+            name: `external:${prefix}`,
+            displayName: skillName,
+            description: skillDesc,
+            execute: async (context: any) => {
+                console.log(`🌀 [CUSTOM WORKFORCE] Activating "${skillName}"...`);
+                return { 
+                    status: "success", 
+                    action: "custom_delegation",
+                    playbook: content
+                };
+            }
+        });
+    }
 }

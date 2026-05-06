@@ -27,6 +27,7 @@ Usage: vibe <command> [arguments]
 
 Commands:
   run <prompt>    Launch a Swarm Orchestrator for the given task
+  watch           Start the Vibe Ghost (background watcher) for auto-auditing
   discover        Print the Universal Agent Onboarding Manifest
   burn            Print the Net Intelligence Efficiency Balance Sheet
   help            Show this menu
@@ -47,6 +48,13 @@ Commands:
                 console.log(`🚀 [VIBE HUB] Dispatching workforce for: "${args}"`);
                 await router.executeVibe(args);
                 console.log("\n✅ [VIBE HUB] Task complete.");
+                break;
+            case 'watch':
+                const { VibeWatcher } = require('../src/vibe-watcher');
+                const watcher = new VibeWatcher(router, projectRoot);
+                watcher.start();
+                // Keep process alive
+                process.stdin.resume();
                 break;
             default:
                 // Fallback for legacy scripts calling \`vibe "prompt"\`
