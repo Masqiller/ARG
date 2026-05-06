@@ -1,7 +1,0 @@
-# [Ruflo] plugins/ruflo-observability/skills/observe-trace/SKILL.md
-
-Source file from Ruflo framework.
-Path: `plugins/ruflo-observability/skills/observe-trace/SKILL.md`
-
-## Connections
-- [[AWWESOME_SKILL_TREE]]

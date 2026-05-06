@@ -11,13 +11,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-PROMPT="$1"
-
-echo "🚀 [VIBE HUB] Dispatching workforce for: \"$PROMPT\""
-echo "--------------------------------------------------------"
-
 # Trigger the ARG Engine
-npx ts-node "$EXEC_SCRIPT" "$PROMPT"
+npx ts-node "$EXEC_SCRIPT" "$@"
 
 echo "--------------------------------------------------------"
 echo "✅ [VIBE HUB] Task processing complete. Adaptive weights synchronized."

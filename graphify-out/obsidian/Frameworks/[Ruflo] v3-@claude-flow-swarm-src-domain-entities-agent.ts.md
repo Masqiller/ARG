@@ -1,7 +1,0 @@
-# [Ruflo] v3/@claude-flow/swarm/src/domain/entities/agent.ts
-
-Source file from Ruflo framework.
-Path: `v3/@claude-flow/swarm/src/domain/entities/agent.ts`
-
-## Connections
-- [[AWWESOME_SKILL_TREE]]

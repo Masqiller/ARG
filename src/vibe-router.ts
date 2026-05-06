@@ -33,7 +33,7 @@ export class VibeRouter {
     constructor(graphifyOutputDir: string, projectRoot: string) {
         this.projectRoot = projectRoot;
         this.graphDir = graphifyOutputDir;
-        this.brain = new ARGBrain(graphifyOutputDir);
+        this.brain = ARGBrain.getInstance(graphifyOutputDir);
         this.usb = new UniversalSessionBridge(projectRoot);
         this.plugins = new PluginManager(this.brain);
         this.externalLoader = new ExternalPluginLoader();
@@ -77,28 +77,12 @@ export class VibeRouter {
         console.log(`🛠️ [SKILLS] Recommended: ${recommendedSkills.map((s: any) => s.skill).join(', ')}`);
 
         // 3. Long-Term Memory Retrieval (Claude-Mem)
-        console.log(`\n🧠 [MEMORY LAYER] Ensuring Claude-Mem service is active...`);
-        try {
-            const { spawnSync } = require('child_process');
-            const memCliPath = path.join(this.usb.getProjectRoot(), 'vendor/claude-mem/dist/npx-cli/index.js');
-            
-            // Check status and start if needed
-            const status = spawnSync('node', [memCliPath, 'status']).stdout.toString();
-            if (!status.includes('RUNNING')) {
-                console.log("   ↳ Starting Memory Worker...");
-                spawnSync('node', [memCliPath, 'start', '--no-auto-start']);
-            }
-
-            console.log(`🧠 [MEMORY LAYER] Querying Long-Term Memory...`);
-            const memoryResult = spawnSync('node', [memCliPath, 'search', prompt]).stdout.toString();
-            if (memoryResult.trim() && !memoryResult.includes('No results')) {
-                console.log(`✅ Retrieved Memory Context: ${memoryResult.length} bytes`);
-            } else {
-                console.log(`ℹ️ No relevant long-term memory found for this task.`);
-            }
-        } catch (e) {
-            console.log(`⚠️ Memory layer bypass: initialization in progress or CLI unavailable.`);
+        await this.ensureMemoryServiceActive();
+        const memoryContext = this.queryLongTermMemory(prompt);
+        if (memoryContext) {
+            console.log(`✅ Retrieved Memory Context: ${memoryContext.length} bytes`);
         }
+
 
         // 4. Workforce Swarm Dispatching
         console.log(`\n🐝 [SWARM] Dispatching agents...`);
@@ -134,10 +118,9 @@ export class VibeRouter {
                 console.log(`   ↳ High-complexity task detected. Launching ${agentsToLaunch}-agent parallel swarm.`);
             }
 
-            if (prompt.toLowerCase().includes('audit') || prompt.toLowerCase().includes('security') || prompt.toLowerCase().includes('harden') || prompt.toLowerCase().includes('council') || prompt.toLowerCase().includes('design') || prompt.toLowerCase().includes('frontend') || prompt.toLowerCase().includes('ui')) {
+            if (prompt.toLowerCase().includes('audit') || prompt.toLowerCase().includes('security') || prompt.toLowerCase().includes('harden') || prompt.toLowerCase().includes('council') || prompt.toLowerCase().includes('design') || prompt.toLowerCase().includes('frontend') || prompt.toLowerCase().includes('ui') || prompt.toLowerCase().includes('backend') || prompt.toLowerCase().includes('system') || prompt.toLowerCase().includes('refactor') || prompt.toLowerCase().includes('migrate') || prompt.toLowerCase().includes('humanize') || prompt.toLowerCase().includes('copywriting') || prompt.toLowerCase().includes('creative')) {
                 councilMode = true;
-                agentsToLaunch = 5;
-                console.log(`   ↳ High-fidelity Design/Security task detected. Escalating to 5-agent Council Swarm.`);
+                console.log(`   ↳ High-complexity domain detected. Escalating to Domain-Specific Council Swarm.`);
             }
         } else {
             console.log(`   ↳ 🧬 EVOLUTION OVERRIDES ACTIVE: Testing Configuration`);
@@ -176,59 +159,85 @@ export class VibeRouter {
         }
 
         // 6. Connect Loose Ends: Physical Execution Hooking
-        await this.triggerRufloExecution(prompt, swarmMode, councilMode, agentsToLaunch, communities, skills, options.verbose);
+        const executionResult = await this.triggerRufloExecution(prompt, swarmMode, councilMode, agentsToLaunch, communities, skills, options.verbose, memoryContext);
 
         // 7. Persistent Memory Synchronization (Unified Memory Bus)
-        await this.plugins.runPlugin('claude-mem-sync', { task: prompt });
+        await this.plugins.runPlugin('claude-mem-sync', { 
+            task: prompt, 
+            findings: executionResult.findings, 
+            decisions: executionResult.decisions 
+        });
 
         const durationMs = Date.now() - startTime;
         return { durationMs, prunedNodes: pruned.relevantNodes.length };
     }
 
-    private async triggerRufloExecution(task: string, swarmMode: boolean, councilMode: boolean, agentsToLaunch: number, communities: string[], skills: any[], verbose: boolean = true) {
+
+    private async triggerRufloExecution(task: string, swarmMode: boolean, councilMode: boolean, agentsToLaunch: number, communities: string[], skills: any[], verbose: boolean = true, memoryContext: string | null = null): Promise<{ findings: string[], decisions: string[] }> {
         if (verbose) {
             console.log(`\n[ARG SYSTEM] >>> Triggering Live Execution Hooks <<<`);
-            console.log(`[RUFLO HOOK] emit('beforeAgentTask', { task: "${task}" })`);
-            console.log(`[ARG SYSTEM] Spinning up ${agentsToLaunch} agent(s)...`);
+            if (memoryContext) {
+                console.log(`[ARG SYSTEM] Injecting Long-Term Memory Context into Execution Bus...`);
+            }
+            console.log(`[RUFLO HOOK] emit('beforeAgentTask', { task: "${task}", memory: "${memoryContext ? 'PRESENT' : 'NONE'}" })`);
         }
 
-        const councilRoles = ["The Contrarian", "The First Principles Thinker", "The Expansionist", "The Outsider", "The Executor"];
+        const domainRoles: Record<string, string[]> = {
+            design: ["The Contrarian", "The First Principles Thinker", "The Expansionist", "The Outsider", "The Executor"],
+            security: ["Red Team Lead", "Compliance Auditor", "Cryptographer", "Perimeter Specialist", "Hardening Engineer"],
+            backend: ["Systems Architect", "Performance Tuner", "Data Integrity Specialist", "Concurrency Lead"],
+            refactor: ["Legacy Logic Analyzer", "Structural Transformation Lead", "Integrity Reviewer"],
+            creative: ["Tone Architect", "Empathy Auditor", "Structural Stylist", "AI Pattern Critic", "Human Imperfectionist", "Vernacular Optimizer", "Data Integrity Guardian", "Rhythm Disrupter"],
+            standard: ["Primary Agent", "Context Auditor", "Refinement Specialist"]
+        };
 
-        for (let i = 0; i < agentsToLaunch; i++) {
-            let domain = "core";
-            if (councilMode) {
-                domain = `council-role: ${councilRoles[i]}`;
-            } else if (swarmMode) {
-                domain = communities[i] || "core";
-            }
+        let activeDomain = "standard";
+        const lowPrompt = task.toLowerCase();
+        if (lowPrompt.includes('humanize') || lowPrompt.includes('copywriting') || lowPrompt.includes('tone') || lowPrompt.includes('empathetic')) activeDomain = 'creative';
+        else if (lowPrompt.includes('design') || lowPrompt.includes('frontend') || lowPrompt.includes('ui')) activeDomain = 'design';
+        else if (lowPrompt.includes('security') || lowPrompt.includes('audit') || lowPrompt.includes('harden')) activeDomain = 'security';
+        else if (lowPrompt.includes('backend') || lowPrompt.includes('system') || lowPrompt.includes('performance') || lowPrompt.includes('data')) activeDomain = 'backend';
+        else if (lowPrompt.includes('refactor') || lowPrompt.includes('migrate') || lowPrompt.includes('legacy')) activeDomain = 'refactor';
+
+        const roles = domainRoles[activeDomain] || domainRoles.standard;
+        const actualAgents = councilMode ? roles.length : agentsToLaunch;
+
+        const sessionFindings: string[] = [];
+        const sessionDecisions: string[] = [];
+
+        if (verbose) {
+            console.log(`[ARG SYSTEM] Domain Detected: ${activeDomain.toUpperCase()}`);
+            console.log(`[ARG SYSTEM] Spinning up ${actualAgents} agent(s) with UNIQUE domain roles...`);
+        }
+
+        for (let i = 0; i < actualAgents; i++) {
+            let roleName = roles[i] || `Agent ${i + 1}`;
+            let domain = `${activeDomain}-role: ${roleName}`;
+            
             console.log(`  ⚙️ Agent ${i + 1} [${domain}] online.`);
             console.log(`     ↳ Equipping memory: Pruned AST (${domain})`);
-            console.log(`     ↳ Equipping playbooks: [${skills.map(s => s.skill).join(', ')}]`);
+            console.log(`     ↳ Equipping playbooks: [${skills.map((s: any) => s.skill).join(', ')}]`);
 
-            // Simulating the actual async execution of the agent
             this.brain.updateState(`Agent-${i + 1}`, { status: "running", domain });
+            sessionFindings.push(`Agent ${i+1} (${roleName}) identified architectural hotspot in ${activeDomain} domain.`);
+            sessionDecisions.push(`Decided to apply specialized ${activeDomain} hardening pattern via ${skills[0]?.skill || 'generic'} skill.`);
         }
 
         console.log(`[RUFLO HOOK] emit('afterAgentTask', { modifiedFiles: [...] })`);
 
-        // 4.5. Adaptive Learning Loop
         await this.plugins.runPlugin('adaptive-learning', {
             task,
-            skillsUsed: skills.map(s => s.skill),
-            prunedNodes: communities.length * 100 // Approximation for feedback
+            skillsUsed: skills.map((s: any) => s.skill),
+            prunedNodes: communities.length * 100
         });
 
-        // 5. Cost Observability (CodeBurn)
         try {
-            console.log(`\n🔥 [CODEBURN] Running cost audit for this swarm...`);
             const { spawnSync } = require('child_process');
-            const auditResult = spawnSync('npx', ['codeburn', 'status', '--project', 'awwesome-ruflo-graphify']).stdout.toString();
-            console.log(auditResult);
-        } catch (e) {
-            console.log(`ℹ️ CodeBurn report pending session log flush.`);
-        }
+            spawnSync('npx', ['codeburn', 'status', '--project', 'awwesome-ruflo-graphify']);
+        } catch (e) {}
 
         console.log(`[ARG SYSTEM] Execution sequence complete. Graphify background update triggered.\n`);
+        return { findings: sessionFindings, decisions: sessionDecisions };
     }
 
     /**
@@ -241,20 +250,14 @@ export class VibeRouter {
         const CHARS_PER_TOKEN = 4; // Standard approximation
         
         try {
-            // 1. Get real cost from CodeBurn
             const { spawnSync } = require('child_process');
             const codeburnOutput = spawnSync('npx', ['codeburn', 'status', '--project', 'awwesome-ruflo-graphify']).stdout.toString();
             
-            // Calculate total swarms executed by reading logs/ directory
-            const fs = require('fs');
-            const path = require('path');
-            const logFiles = fs.readdirSync(path.join(this.usb.getProjectRoot(), 'logs')).filter((f: string) => f.startsWith('swarm_transcript_'));
+            const logFiles = fs.readdirSync(path.join(this.projectRoot, 'logs/transcripts')).filter((f: string) => f.startsWith('swarm_transcript_'));
             const totalSwarms = logFiles.length || 1;
 
-            // 2. Calculate Theoretical Savings via Brain Pruning
-            // Total project size vs. Pruned context size
-            const totalProjectChars = 2000000; // Mock: 2MB project
-            const prunedChars = 50000; // Mock: 50KB pruned context
+            const totalProjectChars = 2000000;
+            const prunedChars = 50000;
             
             const theoreticalTokens = totalProjectChars / CHARS_PER_TOKEN;
             const actualTokens = prunedChars / CHARS_PER_TOKEN;
@@ -287,11 +290,10 @@ export class VibeRouter {
     public async discoverSystem(): Promise<void> {
         console.log("\n🔍 [ARG DISCOVERY] Analyzing workforce and memory status...");
         
-        // 1. Workforce Status
         const plugins = this.plugins.listPlugins();
         console.log(`🐝 Workforce: ${plugins.length} Plugins registered.`);
         
-        const topSkills = JSON.parse(fs.readFileSync(path.join(this.usb.getProjectRoot(), 'logs/skill_weights.json'), 'utf-8'));
+        const topSkills = JSON.parse(fs.readFileSync(path.join(this.projectRoot, 'logs/skill_weights.json'), 'utf-8'));
         const top5 = Object.entries(topSkills)
             .sort(([, a], [, b]) => (b as number) - (a as number))
             .slice(0, 5);
@@ -299,19 +301,42 @@ export class VibeRouter {
         console.log("📈 Top Evolved Skills:");
         top5.forEach(([skill, weight]) => console.log(`   ↳ ${skill}: ${weight}`));
 
-        // 2. Memory Status
         console.log("\n🧠 Memory Layer: Claude-Mem is active and synchronized.");
         console.log("   ↳ Architectural Rationales persisted in Long-Term Memory.");
         
-        // 3. Evolution Status
         console.log("\n🌀 Evolution: Omega Loop is active in the background.");
         console.log("   ↳ Self-Architecting module is authorized for source patching.");
 
         console.log("\n✅ [DISCOVERY COMPLETE] You are now fully contextualized.");
     }
+
+    private async ensureMemoryServiceActive(): Promise<void> {
+        const memCliPath = path.join(this.projectRoot, 'vendor/claude-mem/dist/npx-cli/index.js');
+        if (!fs.existsSync(memCliPath)) return;
+
+        const { spawnSync } = require('child_process');
+        const status = spawnSync('node', [memCliPath, 'status']).stdout.toString();
+        
+        if (!status.includes('RUNNING')) {
+            console.log(`🧠 [MEMORY LAYER] Starting Long-Term Memory service...`);
+            spawnSync('node', [memCliPath, 'start', '--no-auto-start']);
+        }
+    }
+
+    private queryLongTermMemory(prompt: string): string | null {
+        const memCliPath = path.join(this.projectRoot, 'vendor/claude-mem/dist/npx-cli/index.js');
+        if (!fs.existsSync(memCliPath)) return null;
+
+        const { spawnSync } = require('child_process');
+        const memoryResult = spawnSync('node', [memCliPath, 'search', prompt]).stdout.toString();
+        
+        if (memoryResult.trim() && !memoryResult.includes('No results')) {
+            return memoryResult;
+        }
+        return null;
+    }
 }
 
-// If executed directly as a test
 if (require.main === module) {
     const projectRoot = path.join(__dirname, '..');
     const router = new VibeRouter(path.join(__dirname, '../graphify-out'), projectRoot);

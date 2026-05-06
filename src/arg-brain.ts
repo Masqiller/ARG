@@ -9,6 +9,7 @@ export interface PrunedContext {
 }
 
 export class ARGBrain {
+    private static instance: ARGBrain | null = null;
     private graph: any = null;
     private memoryStore: Map<string, any> = new Map();
 
@@ -19,8 +20,17 @@ export class ARGBrain {
     private communityNodes: Map<string, any[]> = new Map();
 
     private statePath: string;
+    private isSaving: boolean = false;
+    private pendingSave: boolean = false;
 
-    constructor(private graphifyOutputDir: string) {
+    public static getInstance(graphifyOutputDir: string): ARGBrain {
+        if (!ARGBrain.instance) {
+            ARGBrain.instance = new ARGBrain(graphifyOutputDir);
+        }
+        return ARGBrain.instance;
+    }
+
+    private constructor(private graphifyOutputDir: string) {
         this.statePath = path.join(this.graphifyOutputDir, 'state.json');
         this.loadGraph();
         this.loadState();
@@ -38,12 +48,24 @@ export class ARGBrain {
         }
     }
 
-    private saveState() {
+    private async saveState() {
+        if (this.isSaving) {
+            this.pendingSave = true;
+            return;
+        }
+
+        this.isSaving = true;
         try {
             const data = Object.fromEntries(this.memoryStore);
-            fs.writeFileSync(this.statePath, JSON.stringify(data, null, 2));
+            await fs.promises.writeFile(this.statePath, JSON.stringify(data, null, 2));
         } catch (e) {
             console.error("⚠️ Failed to save swarm state.");
+        } finally {
+            this.isSaving = false;
+            if (this.pendingSave) {
+                this.pendingSave = false;
+                this.saveState();
+            }
         }
     }
 

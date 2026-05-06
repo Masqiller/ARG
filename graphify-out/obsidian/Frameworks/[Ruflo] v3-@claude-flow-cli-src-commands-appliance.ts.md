@@ -1,7 +1,0 @@
-# [Ruflo] v3/@claude-flow/cli/src/commands/appliance.ts
-
-Source file from Ruflo framework.
-Path: `v3/@claude-flow/cli/src/commands/appliance.ts`
-
-## Connections
-- [[AWWESOME_SKILL_TREE]]

@@ -36,7 +36,16 @@ Thumbs.db
 .env
 .env.local
 
-# ARG Sessions and Logs
+# Logs and personal data
+logs/
+*.log
+FAULT_LOG.md
+.tempmediaStorage/
+vendor/claude-mem/data/
+vendor/claude-mem/db/
+vendor/claude-mem/*.db
+vendor/claude-mem/logs/
+graphify-out/
 .arg_sessions/
 logs/
 graphify-out/
