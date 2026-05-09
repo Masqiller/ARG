@@ -38,6 +38,47 @@ A parallel background daemon (`scripts/arg-healer.ts`) that watches the Auditor'
 
 ---
 
+## 📥 Installation & Setup
+
+### 1. Download & Install
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/Masqiller/ARG.git
+cd awwesome-ruflo-graphify
+npm install
+npm run build
+```
+
+### 2. Initialize the Database
+Run the setup script to initialize the workspace and create the database:
+```bash
+./init.sh
+```
+*Note: This will automatically import the 5,000+ skills into the database.*
+
+## 🔌 Deployment as MCP Server
+
+ARG can be integrated into any IDE that supports the Model Context Protocol (MCP) like **Claude Code**, **Windsurf**, or **Cursor**.
+
+### Add to Claude Code
+To add the ARG MCP server (which includes the Python bridge and all tools), run:
+
+```bash
+claude mcp add arg-mcp -- node /path/to/awwesome-ruflo-graphify/bin/arg-mcp.js
+```
+
+Or if you want to use the pure Python bridge for skills:
+```bash
+claude mcp add arg-python -- python3 /path/to/awwesome-ruflo-graphify/scripts/arg_skill_server.py
+```
+
+### Add to Cursor / Windsurf
+Add a new MCP server in your IDE settings with:
+- **Type**: `command`
+- **Command**: `node /path/to/awwesome-ruflo-graphify/bin/arg-mcp.js`
+
+---
+
 ## 🛠️ How to Use (The Universal IDE)
 
 ARG is an ambient orchestrator designed to be invisible until invoked. It supports absolute integration with **any IDE** (Windsurf, Cursor, VS Code).
