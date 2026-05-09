@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
+import { EXTERNAL_PLUGINS_DIR } from './config.js';
 
 /**
  * ARG EXTERNAL PLUGIN MANAGER v53.1
  * Manages modular tools located in the /external_plugins directory.
  */
 export class ExternalPluginManager {
-    private externalPath = "/home/smit/Downloads/Fusion/external_plugins";
+    private externalPath = EXTERNAL_PLUGINS_DIR;
 
     constructor() {
         console.log("🔌 ARG EXTERNAL PLUGIN MANAGER: Online.");

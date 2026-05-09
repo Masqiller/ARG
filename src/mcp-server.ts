@@ -290,8 +290,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const logs: string[] = [];
             const originalLog = console.log;
             console.log = (...args) => logs.push(args.join(' '));
-            await router.executeVibe(args.prompt as string);
-            console.log = originalLog;
+            try {
+                await router.executeVibe(args.prompt as string);
+            } finally {
+                console.log = originalLog;
+            }
             return ok(logs.join('\n'));
         }
 
@@ -300,8 +303,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const logs: string[] = [];
             const originalLog = console.log;
             console.log = (...args) => logs.push(args.join(' '));
-            await router.discoverSystem();
-            console.log = originalLog;
+            try {
+                await router.discoverSystem();
+            } finally {
+                console.log = originalLog;
+            }
             return ok(logs.join('\n'));
         }
 

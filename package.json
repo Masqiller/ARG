@@ -1,10 +1,21 @@
 {
   "name": "awwesome-ruflo-graphify",
   "version": "1.0.0",
-  "description": "Graphify integration plugin for Ruflo",
-  "main": "src/mcp-server.ts",
+  "description": "ARG — Autonomous intelligence layer with knowledge-graph-driven context pruning, skill routing, and MCP server integration.",
+  "main": "dist/mcp-server.js",
   "bin": {
     "arg-mcp": "bin/arg-mcp.js"
+  },
+  "files": [
+    "dist/",
+    "bin/",
+    "scripts/arg_skill_server.py",
+    "scripts/arg_import_skills_to_db.py",
+    "init.sh",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
     "build": "tsc",
@@ -19,13 +30,14 @@
     "ruflo",
     "graphify",
     "mcp",
-    "knowledge-graph"
+    "knowledge-graph",
+    "ai-agent",
+    "swarm"
   ],
-  "author": "",
+  "author": "Smit",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "child_process": "^1.0.2",
     "codeburn": "latest",
     "dotenv": "^16.4.5",
     "n8n-mcp": "^2.50.4"

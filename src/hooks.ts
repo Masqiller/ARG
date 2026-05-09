@@ -1,8 +1,5 @@
-import { exec } from "child_process";
-import { promisify } from "util";
+import { spawnSync, spawn } from "child_process";
 import * as path from "path";
-
-const execAsync = promisify(exec);
 
 // ═══════════════════════════════════════════════════════════════════
 // AWWESOME RUFLO GRAPHIFY — Lifecycle Hooks v3.0
@@ -30,7 +27,8 @@ export default function registerHooks(ruflo: any) {
         console.log("[AWWESOME] Phase 1: Building structural knowledge graph...");
         try {
             // Generate baseline graph
-            await execAsync(`graphify .`);
+            const result = spawnSync('graphify', ['.'], { encoding: 'utf-8', shell: false });
+            if (result.status !== 0) throw new Error(result.stderr || 'graphify failed');
             console.log("[AWWESOME] ✓ Baseline knowledge graph generated.");
             
             // Immediately warm the skill recommendation cache
@@ -73,10 +71,10 @@ Do NOT skip this step. Do NOT proceed without reading the briefing.`;
             console.log(`[AWWESOME] Phase 3: ${modifiedFiles.length} files modified. Updating graph...`);
             
             // Run incremental update in background (non-blocking)
-            execAsync(`graphify . --update`).then(() => {
-                console.log("[AWWESOME] ✓ Knowledge graph updated incrementally.");
-            }).catch((error: any) => {
-                console.error(`[AWWESOME] ✗ Background graph update failed: ${error.message}`);
+            const child = spawn('graphify', ['.', '--update'], { stdio: 'ignore', shell: false });
+            child.on('close', (code) => {
+                if (code === 0) console.log("[AWWESOME] ✓ Knowledge graph updated incrementally.");
+                else console.error(`[AWWESOME] ✗ Background graph update failed (exit ${code})`);
             });
             
             // Check if a God Node was modified (high-impact change)

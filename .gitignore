@@ -36,16 +36,23 @@ Thumbs.db
 .env
 .env.local
 
-# Logs and personal data
+# Logs and runtime data
 logs/
 *.log
 FAULT_LOG.md
 .tempmediaStorage/
+
+# Vendor data (cloned at setup time)
 vendor/claude-mem/data/
 vendor/claude-mem/db/
 vendor/claude-mem/*.db
 vendor/claude-mem/logs/
+
+# Generated output
 graphify-out/
+
+# Sessions
 .arg_sessions/
-logs/
-graphify-out/
+
+# Database
+.swarm/

@@ -1,0 +1,55 @@
+# Source (compiled output in dist/ is what gets published)
+src/
+scripts/
+*.ts
+
+# Development & personal files
+vendor/
+venv/
+external_plugins/
+.obsidian-test/
+past_chats/
+past_convo.md
+paper/
+logs/
+sandbox_burn_test/
+graphify-out/
+.arg_session/
+.swarm/
+
+# Test & audit output
+test_output*.txt
+audit_report.txt
+
+# Config files for other editors
+.clinerules
+.cursorrules
+.pearairules
+.windsurfrules
+AGENT.md
+AGENTS.md
+AI.md
+AIDER.md
+ANTIGRAVITY.md
+CLAUDE.md
+CONVENTIONS.md
+Context.md
+GITHUB_REPOS.md
+OBSIDIAN_GUIDE.md
+ARG_MANIFESTO.md
+
+# Root-level experiment scripts
+humanize_mamba.ts
+humanize_passage.ts
+analyze_humanizer.ts
+arg_swarm_orchestrator.ts
+
+# Build artifacts & OS files
+node_modules/
+.git/
+.github/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.local

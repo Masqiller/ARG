@@ -1,13 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ARGPlugin } from './plugin-manager';
+import { EXTERNAL_PLUGINS_DIR } from '../config.js';
 
 /**
  * 🌍 [UNIVERSAL EXTERNAL LOADER] v2.5
  * Deep integration for Claude-Code, Superpowers, and Caveman workforce.
  */
 export class ExternalPluginLoader {
-    private externalRoot = '/home/smit/Downloads/Fusion/external_plugins';
+    private externalRoot = EXTERNAL_PLUGINS_DIR;
 
     constructor() {}
 

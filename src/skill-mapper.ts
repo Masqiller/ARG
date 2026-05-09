@@ -1,16 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { SKILLS_DIR, SUPERPOWERS_DIR, CAVEMAN_DIR, EXTERNAL_PLUGINS_DIR } from './config.js';
 
 // ─────────────────────────────────────────────────────────────────────
 // AWWESOME RUFLO GRAPHIFY — Intelligent Skill Mapper v2.0
 // Uses weighted scoring, graph community analysis, and context budget
 // awareness to select the minimum set of maximum-impact skills.
 // ─────────────────────────────────────────────────────────────────────
-
-const SKILLS_DIR = '/home/smit/Downloads/Fusion/antigravity-awesome-skills/skills';
-const SUPERPOWERS_DIR = '/home/smit/Downloads/Fusion/external_plugins/superpowers/skills';
-const CAVEMAN_DIR = '/home/smit/Downloads/Fusion/external_plugins/caveman/skills';
-const EXTERNAL_DIR = '/home/smit/Downloads/Fusion/external_plugins';
 
 // ── Weighted Skill Heuristics ────────────────────────────────────────
 // Each entry maps a keyword/pattern to skills with a relevance weight.
@@ -341,7 +337,7 @@ export function getSkillPath(skillName: string): string | null {
     const cavemanPath = path.join(CAVEMAN_DIR, skillName, 'SKILL.md');
     if (fs.existsSync(cavemanPath)) return cavemanPath;
 
-    const externalPath = path.join(EXTERNAL_DIR, skillName, 'SKILL.md');
+    const externalPath = path.join(EXTERNAL_PLUGINS_DIR, skillName, 'SKILL.md');
     return fs.existsSync(externalPath) ? externalPath : null;
 }
 
@@ -352,13 +348,13 @@ export function listAllSkills(): string[] {
     const skills = fs.existsSync(SKILLS_DIR) ? fs.readdirSync(SKILLS_DIR) : [];
     const superpowers = fs.existsSync(SUPERPOWERS_DIR) ? fs.readdirSync(SUPERPOWERS_DIR) : [];
     const caveman = fs.existsSync(CAVEMAN_DIR) ? fs.readdirSync(CAVEMAN_DIR) : [];
-    const external = fs.existsSync(EXTERNAL_DIR) ? fs.readdirSync(EXTERNAL_DIR) : [];
+    const external = fs.existsSync(EXTERNAL_PLUGINS_DIR) ? fs.readdirSync(EXTERNAL_PLUGINS_DIR) : [];
     
     return [...skills, ...superpowers, ...caveman, ...external].filter(name => {
         const p1 = path.join(SKILLS_DIR, name, 'SKILL.md');
         const p2 = path.join(SUPERPOWERS_DIR, name, 'SKILL.md');
         const p3 = path.join(CAVEMAN_DIR, name, 'SKILL.md');
-        const p4 = path.join(EXTERNAL_DIR, name, 'SKILL.md');
+        const p4 = path.join(EXTERNAL_PLUGINS_DIR, name, 'SKILL.md');
         return fs.existsSync(p1) || fs.existsSync(p2) || fs.existsSync(p3) || fs.existsSync(p4);
     });
 }
