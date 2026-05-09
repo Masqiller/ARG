@@ -1,6 +1,6 @@
 {
   "name": "awwesome-ruflo-graphify",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ARG — Autonomous intelligence layer with knowledge-graph-driven context pruning, skill routing, and MCP server integration.",
   "main": "dist/mcp-server.js",
   "bin": {
@@ -19,12 +19,15 @@
   },
   "scripts": {
     "build": "tsc",
+    "lint": "eslint src/ --ext .ts",
+    "lint:fix": "eslint src/ --ext .ts --fix",
+    "format": "prettier --write 'src/**/*.ts' 'tests/**/*.ts'",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "setup": "chmod +x init.sh && ./init.sh",
     "vibe": "npx ts-node src/vibe-router.ts",
     "graph": "graphify build .",
-    "remember": "node vendor/claude-mem/dist/cli/index.js remember",
-    "mcp": "node dist/mcp-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mcp": "node dist/mcp-server.js"
   },
   "keywords": [
     "ruflo",
@@ -44,7 +47,13 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "^5.0.0"
+    "@typescript-eslint/eslint-plugin": "^8.59.2",
+    "@typescript-eslint/parser": "^8.59.2",
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typescript": "^5.0.0",
+    "vitest": "^4.1.5"
   },
   "overrides": {
     "@modelcontextprotocol/sdk": "^1.29.0"
