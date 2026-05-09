@@ -7,6 +7,7 @@ import { FrontendDesignPlugin, CodeReviewPlugin, SecurityReviewPlugin } from './
 import { SecurityCouncilPlugin } from './plugins/security-council';
 import { N8NBridgePlugin } from './plugins/n8n-bridge';
 import { VibeHardenPlugin } from './plugins/vibe-harden';
+import { HumanizationCouncilPlugin } from './plugins/humanization-council';
 import { MemoryCouncilPlugin } from './plugins/memory-council';
 import { MemoryBridge } from './plugins/memory-bridge';
 import { ClaudeMemSyncPlugin } from './plugins/claude-mem-sync';
@@ -45,6 +46,7 @@ export class VibeRouter {
         this.plugins.registerPlugin(new SecurityCouncilPlugin(this.brain));
         this.plugins.registerPlugin(new N8NBridgePlugin(this.brain));
         this.plugins.registerPlugin(new VibeHardenPlugin(this.brain));
+        this.plugins.registerPlugin(new HumanizationCouncilPlugin(this.brain));
         this.plugins.registerPlugin(new MemoryCouncilPlugin(this.brain));
         this.plugins.registerPlugin(new MemoryBridge());
         this.plugins.registerPlugin(new ClaudeMemSyncPlugin(this.brain, projectRoot));
@@ -156,6 +158,17 @@ export class VibeRouter {
         if (prompt.toLowerCase().includes('workflow') || prompt.toLowerCase().includes('automation') || prompt.toLowerCase().includes('n8n')) {
             console.log(`🌉 [VIBE MATCH] n8n-mcp backbone triggered! Bridging automation tools.`);
             await this.plugins.runPlugin('n8n-bridge', { prompt });
+        }
+
+        if (prompt.toLowerCase().includes('humanize')) {
+            console.log(`🌀 [VIBE MATCH] Humanization Council triggered! Escalating tone refinement.`);
+            const humanResult = await this.plugins.runPlugin('humanization-council', { prompt });
+            if (humanResult && humanResult.status === 'success') {
+                console.log("\n--- [STEALTH HUMANIZED VERSION] ---");
+                console.log(humanResult.humanized);
+                console.log("\n--- [COUNCIL DECISION] ---");
+                console.log(humanResult.decision);
+            }
         }
 
         // 6. Connect Loose Ends: Physical Execution Hooking
@@ -340,6 +353,6 @@ export class VibeRouter {
 if (require.main === module) {
     const projectRoot = path.join(__dirname, '..');
     const router = new VibeRouter(path.join(__dirname, '../graphify-out'), projectRoot);
-    const testPrompt = process.argv[2] || "Refactor the Ruflo graph extraction execution pipeline and ensure memory caching works securely.";
+    const testPrompt = process.argv.slice(2).join(' ') || "Refactor the Ruflo graph extraction execution pipeline and ensure memory caching works securely.";
     router.executeVibe(testPrompt);
 }

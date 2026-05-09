@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "setup": "chmod +x init.sh && ./init.sh",
-    "vibe": "node dist/vibe-router.js",
+    "vibe": "npx ts-node src/vibe-router.ts",
     "graph": "graphify build .",
     "remember": "node vendor/claude-mem/dist/cli/index.js remember",
     "mcp": "node dist/mcp-server.js",

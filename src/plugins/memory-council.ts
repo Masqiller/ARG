@@ -19,7 +19,7 @@ export class MemoryCouncilPlugin implements ARGPlugin {
             {
                 role: "The Memory Architect",
                 directive: "Argue for a unified, persistent state bus using claude-mem. Focus on cross-session continuity and semantic retrieval.",
-                stance: "Unified memory is essential for high-fidelity orchestration. Local state is too fragmented."
+                stance: "Unified memory is required for high-fidelity orchestration. Local state is too fragmented."
             },
             {
                 role: "The Decoupling Expert",
@@ -42,7 +42,7 @@ export class MemoryCouncilPlugin implements ARGPlugin {
         const debateSummary = `
 ### 🏛️ Memory Council Debate Summary
 
-1. **The Memory Architect**: "By centralizing state in claude-mem, we allow the 'Security Council' to learn from the 'Frontend Swarm' without manual context passing."
+1. **The Memory Architect**: "Centralizing state in claude-mem enables the 'Security Council' to ingest 'Frontend Swarm' telemetry without manual context passing."
 2. **The Decoupling Expert**: "Agreed, but only if we use namespaced scopes. The 'n8n-bridge' shouldn't see the internal keys of the 'VibeRouter' unless explicitly shared."
 3. **The Security Council**: "We need an 'Observation Audit' hook. Every write to the global memory must be signed and validated."
 4. **The First Principles Thinker**: "The solution is a **Hybrid Memory Bus**: Use 'ARGBrain' for real-time plugin state and 'claude-mem' for cross-session knowledge persistence."

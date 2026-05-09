@@ -239,7 +239,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         if (name === "arg_memory_retrieve") {
-            if (!argBrain) argBrain = new ARGBrain(graphifyOut);
+            if (!argBrain) argBrain = ARGBrain.getInstance(graphifyOut);
             const activeMemories = sessionManager.getAllMemory();
             const result = argBrain.pruneContext(args.query as string, activeMemories);
             return ok(JSON.stringify(result, null, 2));
@@ -252,7 +252,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         if (name === "n8n_arg_fusion") {
-            if (!argBrain) argBrain = new ARGBrain(graphifyOut);
+            if (!argBrain) argBrain = ARGBrain.getInstance(graphifyOut);
             if (!n8nServer) {
                 n8nServer = new N8NDocumentationMCPServer();
                 await (n8nServer as any).initialized;

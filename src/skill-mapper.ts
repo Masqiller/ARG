@@ -10,6 +10,7 @@ import * as path from 'path';
 const SKILLS_DIR = '/home/smit/Downloads/Fusion/antigravity-awesome-skills/skills';
 const SUPERPOWERS_DIR = '/home/smit/Downloads/Fusion/external_plugins/superpowers/skills';
 const CAVEMAN_DIR = '/home/smit/Downloads/Fusion/external_plugins/caveman/skills';
+const EXTERNAL_DIR = '/home/smit/Downloads/Fusion/external_plugins';
 
 // ── Weighted Skill Heuristics ────────────────────────────────────────
 // Each entry maps a keyword/pattern to skills with a relevance weight.
@@ -109,6 +110,8 @@ const SKILL_HEURISTICS: Record<string, SkillWeight[]> = {
     'polish':      [{ skill: 'impeccable', weight: 10, category: 'quality' }, { skill: 'taste-skill', weight: 9, category: 'quality' }],
     'pr':          [{ skill: 'playwright-review', weight: 9, category: 'testing' }],
     'audit':       [{ skill: 'impeccable', weight: 8, category: 'quality' }, { skill: 'security-auditor', weight: 7, category: 'security' }],
+    'humanize':    [{ skill: 'humanizer-skill', weight: 10, category: 'quality' }, { skill: 'avoid-ai-writing', weight: 8, category: 'quality' }],
+    'ai-writing':  [{ skill: 'humanizer-skill', weight: 10, category: 'quality' }, { skill: 'avoid-ai-writing', weight: 9, category: 'quality' }],
 };
 
 // ── Architectural Meta-Skills (always loaded based on graph complexity) ──
@@ -336,7 +339,10 @@ export function getSkillPath(skillName: string): string | null {
     if (fs.existsSync(superpowersPath)) return superpowersPath;
 
     const cavemanPath = path.join(CAVEMAN_DIR, skillName, 'SKILL.md');
-    return fs.existsSync(cavemanPath) ? cavemanPath : null;
+    if (fs.existsSync(cavemanPath)) return cavemanPath;
+
+    const externalPath = path.join(EXTERNAL_DIR, skillName, 'SKILL.md');
+    return fs.existsSync(externalPath) ? externalPath : null;
 }
 
 /**
@@ -346,12 +352,14 @@ export function listAllSkills(): string[] {
     const skills = fs.existsSync(SKILLS_DIR) ? fs.readdirSync(SKILLS_DIR) : [];
     const superpowers = fs.existsSync(SUPERPOWERS_DIR) ? fs.readdirSync(SUPERPOWERS_DIR) : [];
     const caveman = fs.existsSync(CAVEMAN_DIR) ? fs.readdirSync(CAVEMAN_DIR) : [];
+    const external = fs.existsSync(EXTERNAL_DIR) ? fs.readdirSync(EXTERNAL_DIR) : [];
     
-    return [...skills, ...superpowers, ...caveman].filter(name => {
+    return [...skills, ...superpowers, ...caveman, ...external].filter(name => {
         const p1 = path.join(SKILLS_DIR, name, 'SKILL.md');
         const p2 = path.join(SUPERPOWERS_DIR, name, 'SKILL.md');
         const p3 = path.join(CAVEMAN_DIR, name, 'SKILL.md');
-        return fs.existsSync(p1) || fs.existsSync(p2) || fs.existsSync(p3);
+        const p4 = path.join(EXTERNAL_DIR, name, 'SKILL.md');
+        return fs.existsSync(p1) || fs.existsSync(p2) || fs.existsSync(p3) || fs.existsSync(p4);
     });
 }
 

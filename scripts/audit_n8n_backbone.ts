@@ -10,7 +10,7 @@ async function auditBackbone() {
     console.log("🌊 [ARG] Launching Security Council Audit Swarm...");
     
     const graphifyOut = path.resolve("graphify-out");
-    const brain = new ARGBrain(graphifyOut);
+    const brain = ARGBrain.getInstance(graphifyOut);
     const council = new SecurityCouncilPlugin(brain);
 
     const task = "Integrating n8n-mcp as the backbone for ARG workforce orchestration. Using global install and mcp_config.json registration.";

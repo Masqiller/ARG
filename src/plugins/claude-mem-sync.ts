@@ -32,7 +32,7 @@ export class ClaudeMemSyncPlugin implements ARGPlugin {
         const stateString = JSON.stringify(sessionState);
 
         // 2. Write to Transcript for Claude-Mem observation
-        const logDir = path.join(this.projectRoot, 'logs');
+        const logDir = path.join(this.projectRoot, 'logs/transcripts');
         if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
         
         const transcriptPath = path.join(logDir, `swarm_transcript_${Date.now()}.md`);

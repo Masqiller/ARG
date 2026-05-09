@@ -31,8 +31,8 @@ export class VibeWatcher {
             }
         }
 
-        // Watch External Plugins
-        const externalRoot = '/home/smit/Downloads/Fusion/external_plugins';
+        // Watch External Plugins (Relative to Project Root or Environment)
+        const externalRoot = process.env.ARG_WORKFORCE_PATH || path.join(this.projectRoot, 'external_plugins');
         if (fs.existsSync(externalRoot)) {
             this.watchDir(externalRoot, "External Plugins", true);
         }
