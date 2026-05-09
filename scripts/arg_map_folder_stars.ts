@@ -13,7 +13,7 @@ class ARGFolderStarMapper {
         'vendor/external_plugins/claude-code': 121000,
         'vendor/external_plugins/superpowers': 322,
         'external_plugins/humanizer': 100,
-        'external_plugins/tagore': 3400,
+        'external_plugins/humanizer': 3400,
         'external_plugins/frontend_raw': 25000
     };
 

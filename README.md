@@ -1,5 +1,5 @@
 # 🌊 Own-brand Vibe Engine (ARG) v12.5
-### *The Universal Self-Evolving Workforce Orchestrator (Tagore-Mamba Protocol)*
+### *The Universal Self-Evolving Workforce Orchestrator*
 
 ![ARG Banner](https://img.shields.io/badge/Status-Self--Healing-green?style=for-the-badge)
 ![Workforce](https://img.shields.io/badge/Workforce-1,440%2B_Skills-blue?style=for-the-badge)
@@ -33,7 +33,7 @@ A continuous background daemon (`scripts/fault-finder-swarm.ts`) that audits the
 ### 🛡️ ARG Auto-Healer (The Fixer)
 A parallel background daemon (`scripts/arg-healer.ts`) that watches the Auditor's findings and applies real-time patches:
 - **Parallel Healing**: Fixes issues as they are found, without human intervention.
-- **Prose Humanization**: Uses the **Tagore Protocol** to scrub low-density "AI writing" patterns (e.g., "", "") and restore technical density.
+- **Prose Humanization**: Scrubs low-density "AI writing" patterns and restores technical density.
 - **Viewport Hardening**: Automatically applies Level 8 viewport stability patches to all frontend components.
 
 ---
@@ -70,7 +70,6 @@ ARG dynamically assimilates raw playbooks from massive intelligence repositories
 - **Superpowers**: Architectural patterns and frameworks.
 - **Claude-Code**: Native coding commands and IDE manipulation.
 - **Caveman**: High-efficiency, localized execution constraints.
-- **Tagore**: The gold standard for academic-density prose and "anti-slop" technical writing.
 
 ### 3. Claude-Mem Unification (Semantic Persistence)
 Utilizes an assimilated version of `claude-mem` combined with **Ruflo** (Vector Search) and **Graphify** (Graph Topology) to anchor a continuous semantic memory layer. 

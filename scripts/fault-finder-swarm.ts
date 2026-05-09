@@ -26,7 +26,7 @@ class FaultFinderSystemWide {
             findings.push(await this.auditMemoryLayer());
             findings.push(await this.auditWorkforceHealth());
             findings.push(await this.auditFrontendTaste());
-            findings.push(await this.auditTagoreSlop());
+            findings.push(await this.auditHumanizerSlop());
 
             const validFindings = findings.filter(f => f !== "");
             if (validFindings.length > 0) {
@@ -85,12 +85,12 @@ class FaultFinderSystemWide {
         return "";
     }
 
-    private async auditTagoreSlop(): Promise<string> {
+    private async auditHumanizerSlop(): Promise<string> {
         const slopRegex = "(||||moreover|furthermore)";
         const excludeFlags = "--exclude=scripts/fault-finder-swarm.ts --exclude-dir=node_modules";
         try {
             const result = execSync(`grep -riE ${excludeFlags} "${slopRegex}" . | head -n 1`, { encoding: 'utf-8' });
-            if (result) return `[TAGORE] AI Slop detected in technical prose.`;
+            if (result) return `[HUMANIZER] AI Slop detected in technical prose.`;
         } catch (e) {}
         return "";
     }

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 /**
- * 🌪️ [TAGORE-MAMBA SWARM] v12.0 - FULL PAPER HUMANIZATION
+ * 🌪️ [HUMANIZER-MAMBA SWARM] v12.0 - FULL PAPER HUMANIZATION
  * Task: Humanize the "Attention is All You Need" and "Mamba" snippets.
  * Instruction: Abrupt shifts, disconnected flow occasionally, bypass AI detection.
  */
@@ -12,7 +12,7 @@ async function processFullPapers() {
 
     const mambaText = `Foundation models, now powering most of the exciting applications in deep learning, are almost universally based on the Transformer architecture and its core attention module. Many subquadratic-time architectures such as linear attention, gated convolution and recurrent models, and structured state space models (SSMs) have been developed to address Transformers’ computational inefficiency on long sequences, but they have not performed as well as attention on important modalities such as language. We identify that a key weakness of such models is their inability to perform content-based reasoning, and make several improvements. First, simply letting the SSM parameters be functions of the input addresses their weakness with discrete modalities, allowing the model to selectively propagate or forget information along the sequence length dimension depending on the current token. Second, even though this change prevents the use of efficient convolutions, we design a hardware-aware parallel algorithm.`;
 
-    console.log("🌪️ [SWARM] Launching 8-Agent Humanization Swarm (v12.0 Tagore Mode)...");
+    console.log("🌪️ [SWARM] Launching 8-Agent Humanization Swarm (v12.0 Humanizer Mode)...");
 
     // HUMANIZED ATTENTION (The "Transformer" Vibe)
     // Applying: Cutting filler, active voice, abrupt rhythm, high specificity.
@@ -35,7 +35,7 @@ We found the reason: these models cannot perform content-based reasoning. We fix
     console.log(mambaHumanized);
 
     // Scoring
-    console.log("\n📊 Tagore Quality Audit:");
+    console.log("\n📊 Humanizer Quality Audit:");
     console.log("   - AI Tell (Copula Overuse): CLEAN");
     console.log("   - AI Tell (Rule of Three): CLEAN");
     console.log("   - AI Tell (Significance Inflation): CLEAN");

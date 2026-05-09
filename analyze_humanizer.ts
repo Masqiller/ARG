@@ -27,7 +27,7 @@ async function analyzeSuperHumanizerPattern() {
         directives: ["Observe, however, from the results presented below, that", "While efficient, this model contains"]
     };
 
-    console.log("🧬 [ARG DNA] Patterns Extracted. Synthesizing Tagore v4.0...");
+    console.log("🧬 [ARG DNA] Patterns Extracted. Synthesizing Humanizer v4.0...");
 }
 
 analyzeSuperHumanizerPattern().catch(console.error);

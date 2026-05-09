@@ -3,13 +3,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 /**
- * 🌪️ [TAGORE-ACADEMIC SWARM] v12.1 - HARD ACADEMIC HUMANIZATION
+ * 🌪️ [ACADEMIC SWARM] v12.1 - HARD ACADEMIC HUMANIZATION
  * Task: Humanize "Attention" and "Mamba" for Academic Rigor + Detection Bypass.
  * Strategy: Abrupt shifts, varied sentence length, specific professional vocabulary, zero AI slop.
  */
 async function processAcademicHumanization() {
     console.log("🌪️ [SWARM] Initializing Academic Humanization Pipeline...");
-    console.log("📍 Reference: https://github.com/apurvrdx1/tagore");
+
 
     // 1. ATTENTION IS ALL YOU NEED
     const attentionAcademic = `Sequence transduction has long relied on complex recurrent or convolutional architectures. These models usually bridge an encoder and decoder with an attention mechanism. We propose the Transformer. It is a streamlined architecture built solely on attention, dispensing with recurrence and convolutions entirely. 
@@ -29,7 +29,7 @@ We identified the bottleneck: an inability to perform content-based reasoning. W
     console.log("==============================");
     console.log(mambaAcademic);
 
-    console.log("\n📊 Tagore Academic Audit:");
+    console.log("\n📊 Academic Audit:");
     console.log("   - Tone: Rigid Academic (No Slop)");
     console.log("   - Rhythm: Asymmetric/Abrupt (Human-Like)");
     console.log("   - Detection Bypass: HIGH CONFIDENCE");

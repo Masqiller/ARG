@@ -40,7 +40,7 @@ class ARGHealerSwarm {
             }
         }
 
-        // 2. TAGORE SLOP SCRUBBER
+        // 2. HUMANIZER SLOP SCRUBBER
         const slopPatterns = [
             "delve" + " " + "into", 
             "pave" + " " + "the way", 
@@ -51,7 +51,7 @@ class ARGHealerSwarm {
             const issues = this.findPattern(pattern);
             for (const issue of issues) {
                 if (!this.processedFaults.has(issue + pattern)) {
-                    console.log(`🛠️ [TAGORE FIX] Scrubbing slop "${pattern}" from ${issue}...`);
+                    console.log(`🛠️ [HUMANIZER FIX] Scrubbing slop "${pattern}" from ${issue}...`);
                     this.applyPatch(issue, pattern, ""); 
                     this.processedFaults.add(issue + pattern);
                 }
