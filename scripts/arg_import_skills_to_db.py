@@ -5,17 +5,24 @@ import sys
 import time
 
 def import_skills():
+    from pathlib import Path
+    script_dir = Path(__file__).parent.parent
+    
     # Paths
-    vectors_path = "graphify-out/universal_skills_with_vectors.json"
-    db_path = ".swarm/memory.db"
+    # Paths
+    v_path = script_dir / "graphify-out" / "universal_skills_with_vectors.json"
+    if not v_path.exists():
+        v_path = script_dir.parent / "graphify-out" / "universal_skills_with_vectors.json"
+        
+    vectors_path = str(v_path)
+    db_path = str(script_dir / ".swarm" / "memory.db")
 
-    if not os.path.exists(vectors_path):
-        print(f"Error: Vectors file not found at {vectors_path}")
+    if not v_path.exists():
+        print(f"Error: Vectors file not found at {v_path}")
         sys.exit(1)
         
-    if not os.path.exists(db_path):
-        print(f"Error: Database not found at {db_path}")
-        sys.exit(1)
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
 
     print(f"Loading skills from {vectors_path}...")
     with open(vectors_path, 'r', encoding='utf-8') as f:
@@ -26,6 +33,24 @@ def import_skills():
     
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
+
+    # Create table if not exists
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS memory_entries (
+            id TEXT PRIMARY KEY,
+            key TEXT,
+            namespace TEXT,
+            content TEXT,
+            type TEXT,
+            embedding TEXT,
+            embedding_model TEXT,
+            embedding_dimensions INTEGER,
+            tags TEXT,
+            created_at INTEGER,
+            updated_at INTEGER,
+            status TEXT
+        )
+    """)
 
     success_count = 0
     start_time = time.time()
