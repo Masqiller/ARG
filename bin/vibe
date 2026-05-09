@@ -3,7 +3,7 @@
 # 🌊 [UNIVERSAL VIBE HUB] v1.0
 # The single point of entry for autonomous vibe coding.
 
-PROJECT_ROOT="/home/smit/Downloads/Fusion/awwesome-ruflo-graphify"
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EXEC_SCRIPT="$PROJECT_ROOT/scripts/test-adapt.ts"
 
 if [ -z "$1" ]; then

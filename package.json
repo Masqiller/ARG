@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Graphify integration plugin for Ruflo",
   "main": "src/mcp-server.ts",
+  "bin": {
+    "arg-mcp": "bin/arg-mcp.js"
+  },
   "scripts": {
     "build": "tsc",
     "setup": "chmod +x init.sh && ./init.sh",
