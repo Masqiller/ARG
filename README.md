@@ -72,10 +72,15 @@ ARG dynamically assimilates raw playbooks from massive intelligence repositories
 - **Caveman**: High-efficiency, localized execution constraints.
 - **Tagore**: The gold standard for academic-density prose and "anti-slop" technical writing.
 
-### 3. The thing is,. Claude-Mem (Semantic Persistence)
-Utilizes an assimilated version of `claude-mem` to anchor a continuous semantic memory layer locally. Seriously.. The swarm saves architectural intent and past debugging successes to disk, consulting them before starting any new task.
+### 3. Claude-Mem Unification (Semantic Persistence)
+Utilizes an assimilated version of `claude-mem` combined with **Ruflo** (Vector Search) and **Graphify** (Graph Topology) to anchor a continuous semantic memory layer. 
+- **Consolidate Session Memory**: A new tool that reads session history, enriches it with vector-related skills, and saves it as high-density observations in `claude-mem.db`.
+- **Auto-Resume**: The server automatically detects your active Claude-Mem session on startup and links to it!
 
-### 4. 
+### 4. Workspace Isolation & Zero-Credit Idle
+To prevent accidental token consumption and ensure privacy:
+- **Strict Isolation**: Tools only execute if your current working directory is inside the repository or its parent project folder!
+- **Zero-Credit Idle**: Background MCP servers consume 0 API credits when not actively processing your requests.
 
 Anyway, Universal USB (Universal Session Bridge)
 The **USB Manager** ensures that your session context is preserved across IDEs. Whether you switch from Windsurf to Cursor or the raw terminal, the ARG Brain knows exactly where you left off.
