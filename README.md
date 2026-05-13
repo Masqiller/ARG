@@ -1,4 +1,4 @@
-# 🧠 ARG — Autonomous Recursive Graphify
+# 🧠 ARG — Autonomous Recursive Graphify (IN DDEVELOPMENT)
 
 **A knowledge-graph-driven context pruning and skill routing system for AI coding agents.**
 
